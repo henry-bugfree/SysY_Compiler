@@ -106,13 +106,10 @@ InitVal
     ;
 
 FuncDef
-    : FuncType IDENTIFIER '(' ')' Block
-    | FuncType IDENTIFIER '(' FuncFParams ')' Block
-    ;
-
-FuncType
-    : VOID
-    | INT
+    : VOID IDENTIFIER '(' ')' Block
+    | VOID IDENTIFIER '(' FuncFParams ')' Block
+    | BType IDENTIFIER '(' ')' Block
+    | BType IDENTIFIER '(' FuncFParams ')' Block
     ;
 
 FuncFParams_A
@@ -126,14 +123,14 @@ FuncFParams
     ;
 
 FuncFParam_A
-    : '[' Exp ']'
+    : '[' ']'
+    | '[' Exp ']'
+    | FuncFParam_A '[' ']'
     | FuncFParam_A '[' Exp ']'
     ;
 
 FuncFParam
-    : BType IDENTIFIER '['
-    | BType IDENTIFIER ']'
-    | BType IDENTIFIER
+    : BType IDENTIFIER
     | BType IDENTIFIER FuncFParam_A
     ;
 
@@ -159,7 +156,6 @@ Stmt
     | Block
     | IF '(' Cond ')' Stmt
 	| IF '(' Cond ')' Stmt ELSE
-	| IF '(' Cond ')' Stmt Stmt
 	| WHILE '(' Cond ')' Stmt
 	| BREAK ';'
 	| CONTINUE ';'
