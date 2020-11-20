@@ -10,4 +10,4 @@ SysY: lex.yy.c SysY.tab.c SysY.tab.h
 	gcc -o SysY SysY.tab.c lex.yy.c ast.c
 
 clean:
-	rm SysY.exe SysY.tab.c lex.yy.c SysY.tab.h ast.c ast.h
+	del SysY.exe SysY.tab.c lex.yy.c SysY.tab.h

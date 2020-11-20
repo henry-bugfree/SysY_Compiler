@@ -123,7 +123,7 @@ extern int yydebug;
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
 union YYSTYPE
 {
-#line 21 "SysY.y"
+#line 26 "SysY.y"
 
 	int	v_int;
 	char*	v_string;

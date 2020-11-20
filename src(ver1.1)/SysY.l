@@ -1,3 +1,8 @@
+/*
+ * Author: Henry Liang
+ * Date: 11/20/2020
+ */
+
 %{
 #include "ast.h"
 #include "SysY.tab.h"

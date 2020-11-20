@@ -1,3 +1,8 @@
+/*
+ * Author: Henry Liang
+ * Date: 11/20/2020
+ */
+
 %{
 
 #include <stdio.h>
@@ -39,8 +44,8 @@ void yyerror(char *);
 CompUnit
     : Decl		{show_ast($1, 0);}
     | FuncDef		{show_ast($1, 0);}
-    | Decl CompUnit	{show_ast($1, 0);}
-    | FuncDef CompUnit	{show_ast($1, 0);}
+    | CompUnit Decl 	{show_ast($2, 0);}
+    | CompUnit FuncDef 	{show_ast($2, 0);}
     ;
 
 Decl

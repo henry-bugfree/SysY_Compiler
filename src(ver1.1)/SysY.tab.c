@@ -67,7 +67,7 @@
 
 
 /* First part of user prologue.  */
-#line 1 "SysY.y"
+#line 6 "SysY.y"
 
 
 #include <stdio.h>
@@ -600,18 +600,18 @@ static const yytype_int8 yytranslate[] =
   /* YYRLINE[YYN] -- Source line where rule number YYN was defined.  */
 static const yytype_int16 yyrline[] =
 {
-       0,    40,    40,    41,    42,    43,    47,    48,    52,    53,
-      57,    58,    62,    66,    67,    71,    72,    76,    77,    81,
-      82,    83,    84,    88,    89,    93,    94,    98,    99,   103,
-     104,   105,   106,   110,   111,   115,   116,   117,   118,   122,
-     123,   124,   125,   129,   130,   134,   135,   139,   140,   141,
-     142,   146,   147,   151,   152,   156,   157,   161,   162,   166,
-     167,   168,   169,   170,   171,   172,   173,   174,   175,   176,
-     177,   181,   185,   189,   190,   194,   195,   199,   200,   201,
-     205,   206,   207,   211,   212,   213,   214,   218,   219,   220,
-     224,   225,   229,   230,   234,   235,   236,   237,   241,   242,
-     243,   247,   248,   249,   250,   251,   255,   256,   257,   261,
-     262,   266,   267,   271
+       0,    45,    45,    46,    47,    48,    52,    53,    57,    58,
+      62,    63,    67,    71,    72,    76,    77,    81,    82,    86,
+      87,    88,    89,    93,    94,    98,    99,   103,   104,   108,
+     109,   110,   111,   115,   116,   120,   121,   122,   123,   127,
+     128,   129,   130,   134,   135,   139,   140,   144,   145,   146,
+     147,   151,   152,   156,   157,   161,   162,   166,   167,   171,
+     172,   173,   174,   175,   176,   177,   178,   179,   180,   181,
+     182,   186,   190,   194,   195,   199,   200,   204,   205,   206,
+     210,   211,   212,   216,   217,   218,   219,   223,   224,   225,
+     229,   230,   234,   235,   239,   240,   241,   242,   246,   247,
+     248,   252,   253,   254,   255,   256,   260,   261,   262,   266,
+     267,   271,   272,   276
 };
 #endif
 
@@ -672,7 +672,7 @@ static const yytype_int16 yytoknum[] =
 };
 #endif
 
-#define YYPACT_NINF (-156)
+#define YYPACT_NINF (-165)
 
 #define yypact_value_is_default(Yyn) \
   ((Yyn) == YYPACT_NINF)
@@ -686,27 +686,27 @@ static const yytype_int16 yytoknum[] =
      STATE-NUM.  */
 static const yytype_int16 yypact[] =
 {
-     -18,   -42,  -156,    -4,    27,   -18,  -156,    10,  -156,   -18,
-      26,   -32,  -156,  -156,   -40,   -12,  -156,    -6,    14,   -31,
-     270,   198,   -30,    35,    28,  -156,   -29,   270,   205,    36,
-      26,  -156,    40,    22,    52,    37,    43,  -156,  -156,  -156,
-     -15,   270,  -156,  -156,  -156,  -156,  -156,  -156,  -156,   270,
-      -8,    16,    41,    23,  -156,  -156,    16,    22,    38,   198,
-       5,    48,  -156,    47,   191,  -156,  -156,   205,    53,  -156,
-     116,  -156,    54,    22,   -42,    59,   270,   230,  -156,    44,
-    -156,   270,   270,   270,   270,   270,    60,  -156,   -35,  -156,
-      22,  -156,  -156,    62,  -156,   -21,  -156,  -156,    63,    65,
-      66,    68,   235,    69,  -156,  -156,  -156,    28,    55,  -156,
-     141,  -156,    74,    73,   240,    64,  -156,  -156,   -42,    70,
-    -156,    78,    71,  -156,  -156,  -156,  -156,    -8,    -8,  -156,
-     198,  -156,    75,  -156,  -156,   205,  -156,    76,   270,   270,
-    -156,  -156,  -156,    79,   270,  -156,  -156,  -156,   270,  -156,
-      80,   245,  -156,    82,   270,  -156,  -156,    85,  -156,    86,
-    -156,    81,    16,     8,    72,   137,   139,    84,  -156,   100,
-      87,  -156,  -156,    90,  -156,    78,  -156,  -156,   166,   270,
-     270,   270,   270,   270,   270,   270,   270,   166,    93,  -156,
-    -156,  -156,   124,    16,    16,    16,    16,     8,     8,    72,
-     137,  -156,  -156,   166,  -156
+     -18,   -12,  -165,    16,     9,  -165,  -165,    19,  -165,  -165,
+      28,   -11,  -165,  -165,  -165,     0,   -36,    -7,   -15,   -31,
+     270,   198,   -30,   -33,    30,  -165,    -9,   270,   205,    21,
+      28,  -165,    26,    36,    52,    35,    44,  -165,  -165,  -165,
+     -35,   270,  -165,  -165,  -165,  -165,  -165,  -165,  -165,   270,
+       2,    14,    42,    23,  -165,  -165,    14,    36,    38,   198,
+       1,    48,  -165,    47,   191,  -165,  -165,   205,    53,  -165,
+     116,  -165,    50,    36,   -12,    56,   270,   230,  -165,    54,
+    -165,   270,   270,   270,   270,   270,    57,  -165,   -38,  -165,
+      36,  -165,  -165,    59,  -165,   -37,  -165,  -165,    60,    62,
+      63,    65,   235,    66,  -165,  -165,  -165,    30,    64,  -165,
+     141,  -165,    71,    72,   240,    73,  -165,  -165,   -12,    74,
+    -165,    78,    75,  -165,  -165,  -165,  -165,     2,     2,  -165,
+     198,  -165,    76,  -165,  -165,   205,  -165,    79,   270,   270,
+    -165,  -165,  -165,    80,   270,  -165,  -165,  -165,   270,  -165,
+      77,   245,  -165,    82,   270,  -165,  -165,    86,  -165,    88,
+    -165,    81,    14,     6,    87,   129,   136,    84,  -165,    85,
+      89,  -165,  -165,    91,  -165,    78,  -165,  -165,   166,   270,
+     270,   270,   270,   270,   270,   270,   270,   166,   107,  -165,
+    -165,  -165,   124,    14,    14,    14,    14,     6,     6,    87,
+     129,  -165,  -165,   166,  -165
 };
 
   /* YYDEFACT[STATE-NUM] -- Default reduction number in state STATE-NUM.
@@ -715,7 +715,7 @@ static const yytype_int16 yypact[] =
 static const yytype_int8 yydefact[] =
 {
        0,     0,    12,     0,     0,     2,     6,     0,     7,     3,
-       0,     0,     1,     4,    29,     0,     5,     0,     0,     0,
+       0,     0,     1,     4,     5,    29,     0,     0,     0,     0,
        0,     0,     0,    30,     0,    25,     0,     0,     0,     0,
        0,    10,     0,     0,     0,     0,    45,    80,    81,    82,
       75,     0,    87,    88,    89,    78,    83,    79,    94,     0,
@@ -740,18 +740,18 @@ static const yytype_int8 yydefact[] =
   /* YYPGOTO[NTERM-NUM].  */
 static const yytype_int16 yypgoto[] =
 {
-    -156,    50,   -56,   106,  -156,    11,    91,   153,    29,   -63,
-     136,  -156,   113,   181,    51,   -44,  -156,  -156,   185,  -156,
-     -57,    99,   -27,  -156,  -155,   -19,    83,    58,   -65,  -156,
-    -156,   -16,  -156,    46,  -156,    15,   -20,   -82,    39,    61,
-    -156,   -17
+    -165,  -165,    51,   106,  -165,    11,    90,   154,    29,   -63,
+     138,  -165,   111,   181,    67,   -40,   203,  -165,   186,  -165,
+     -56,    99,   -27,  -165,  -164,   -19,    83,    58,   -65,  -165,
+    -165,   -29,  -165,    46,  -165,    17,   -20,   -80,    45,    27,
+    -165,   -17
 };
 
   /* YYDEFGOTO[NTERM-NUM].  */
 static const yytype_int16 yydefgoto[] =
 {
-      -1,     4,     5,    32,     6,    34,    29,    18,   137,    65,
-      26,     8,    23,    15,   132,    54,     9,    75,    35,   115,
+      -1,     4,   106,    32,     6,    34,    29,    18,   137,    65,
+      26,     8,    23,    16,   132,    54,     9,    75,    35,   115,
       36,   108,   109,   110,   111,   112,   161,    78,    45,    46,
       47,    48,    49,   155,   122,    50,    56,   163,   164,   165,
      166,    66
@@ -762,31 +762,31 @@ static const yytype_int16 yydefgoto[] =
      number is the opposite.  If YYTABLE_NINF, syntax error.  */
 static const yytype_uint8 yytable[] =
 {
-      51,    95,    55,    52,    96,   113,    71,    51,    51,    88,
-      63,     7,    10,     2,   106,    91,     7,   117,   179,   180,
-       7,     1,    79,   192,     2,     2,    20,    12,    21,   130,
-      89,    22,   201,    80,    55,   131,    62,     2,     3,    19,
-      55,    33,    57,   135,    51,   113,   116,    51,   204,   136,
-      11,    76,    24,    25,   106,    13,    77,   119,   121,    16,
-      27,   152,    28,   133,    14,   124,   125,   126,    81,    82,
-      83,    20,   159,    21,    37,    38,    39,    40,    30,    31,
-      17,   107,    60,   143,   183,   184,   157,   181,   182,    84,
-      85,    70,    53,    87,    41,   150,    42,    43,    44,   127,
-     128,   197,   198,    59,    67,    69,    72,    74,    86,    73,
-      90,    55,    24,   113,    93,    51,   123,    30,   162,   162,
-     114,   107,   113,   118,    51,   145,    20,   169,    27,   170,
-     151,   140,   173,   141,   138,   175,   139,   153,   113,   147,
-     144,   148,   154,   156,   168,   158,   160,   171,    76,   130,
-     135,   185,   189,   178,   186,     1,   187,   190,   202,   193,
+      51,    95,    55,    52,    96,   113,    71,    51,    51,    12,
+      63,     7,    10,    88,   192,     7,   179,   180,   117,    91,
+      80,     1,    79,   201,     2,     2,   130,   135,    24,    25,
+      89,    76,   131,   136,    55,    59,    77,     2,     3,   204,
+      55,    33,    57,     2,    51,   113,   116,    51,     1,    30,
+      31,     5,   124,   125,   126,    13,    62,   119,   121,    27,
+      19,    28,   152,   133,     2,     3,    20,    20,    21,    21,
+      11,    22,   159,    15,    37,    38,    39,    40,    81,    82,
+      83,   107,    17,   143,    60,   181,   182,    84,    85,    67,
+     157,    69,    53,    87,    41,   150,    42,    43,    44,   183,
+     184,   127,   128,   197,   198,    70,    72,    73,    74,    86,
+      90,    55,    24,   113,    93,    51,   114,    30,   162,   162,
+     118,   107,   113,    20,    51,    27,   123,   169,   140,   170,
+     141,   138,   173,   139,   145,   175,   147,   144,   113,   151,
+     148,   153,   154,   185,   171,   168,   158,   156,    76,   160,
+     130,   186,   135,   178,   189,     1,   187,   188,   190,   193,
      194,   195,   196,   162,   162,   162,   162,    37,    38,    39,
-      40,     2,   188,    98,    97,    99,   100,   101,   102,   103,
-       1,   104,   203,    68,   134,    70,   105,    41,   177,    42,
-      43,    44,    37,    38,    39,    40,     2,    92,    98,   129,
-      99,   100,   101,   102,   103,    61,   104,    58,   176,   146,
-      70,   174,    41,     0,    42,    43,    44,    37,    38,    39,
-      40,   191,   167,    98,   199,    99,   100,   101,   102,   103,
-       0,   104,     0,     0,     0,    70,     0,    41,     0,    42,
-      43,    44,    37,    38,    39,    40,     0,   200,     0,    37,
+      40,     2,   202,    98,    97,    99,   100,   101,   102,   103,
+       1,   104,   203,   134,    68,    70,   105,    41,   177,    42,
+      43,    44,    37,    38,    39,    40,     2,   129,    98,    92,
+      99,   100,   101,   102,   103,    61,   104,    14,    58,   146,
+      70,   174,    41,   200,    42,    43,    44,    37,    38,    39,
+      40,   191,   167,    98,   176,    99,   100,   101,   102,   103,
+     199,   104,     0,     0,     0,    70,     0,    41,     0,    42,
+      43,    44,    37,    38,    39,    40,     0,     0,     0,    37,
       38,    39,    40,     0,     0,     0,    37,    38,    39,    40,
       64,    94,    41,     0,    42,    43,    44,    53,     0,    41,
        0,    42,    43,    44,    64,     0,    41,     0,    42,    43,
@@ -801,31 +801,31 @@ static const yytype_uint8 yytable[] =
 
 static const yytype_int16 yycheck[] =
 {
-      20,    64,    21,    20,    67,    70,    33,    27,    28,    53,
-      27,     0,     1,    55,    70,    59,     5,    74,    10,    11,
-       9,    39,    41,   178,    55,    55,    66,     0,    68,    64,
-      57,    71,   187,    49,    53,    70,    65,    55,    56,    71,
-      59,    72,    72,    64,    64,   110,    73,    67,   203,    70,
-      54,    66,    64,    65,   110,     5,    71,    76,    77,     9,
-      66,   118,    68,    90,    54,    81,    82,    83,    76,    77,
-      78,    66,   135,    68,    51,    52,    53,    54,    64,    65,
-      54,    70,    54,   102,    12,    13,   130,    79,    80,    73,
-      74,    69,    69,    70,    71,   114,    73,    74,    75,    84,
-      85,   183,   184,    68,    68,    65,    54,    64,    67,    72,
-      72,   130,    64,   178,    67,   135,    72,    64,   138,   139,
-      66,   110,   187,    64,   144,    70,    66,   144,    66,   148,
-      66,    65,   151,    65,    71,   154,    71,    67,   203,    65,
-      71,    68,    64,    72,    65,    70,    70,    67,    66,    64,
-      64,    14,    65,    72,    15,    39,    72,    67,    65,   179,
+      20,    64,    21,    20,    67,    70,    33,    27,    28,     0,
+      27,     0,     1,    53,   178,     4,    10,    11,    74,    59,
+      49,    39,    41,   187,    55,    55,    64,    64,    64,    65,
+      57,    66,    70,    70,    53,    68,    71,    55,    56,   203,
+      59,    72,    72,    55,    64,   110,    73,    67,    39,    64,
+      65,     0,    81,    82,    83,     4,    65,    76,    77,    66,
+      71,    68,   118,    90,    55,    56,    66,    66,    68,    68,
+      54,    71,   135,    54,    51,    52,    53,    54,    76,    77,
+      78,    70,    54,   102,    54,    79,    80,    73,    74,    68,
+     130,    65,    69,    70,    71,   114,    73,    74,    75,    12,
+      13,    84,    85,   183,   184,    69,    54,    72,    64,    67,
+      72,   130,    64,   178,    67,   135,    66,    64,   138,   139,
+      64,   110,   187,    66,   144,    66,    72,   144,    65,   148,
+      65,    71,   151,    71,    70,   154,    65,    71,   203,    66,
+      68,    67,    64,    14,    67,    65,    70,    72,    66,    70,
+      64,    15,    64,    72,    65,    39,    72,    72,    67,   179,
      180,   181,   182,   183,   184,   185,   186,    51,    52,    53,
-      54,    55,    72,    57,    68,    59,    60,    61,    62,    63,
-      39,    65,    58,    30,    93,    69,    70,    71,   159,    73,
-      74,    75,    51,    52,    53,    54,    55,    61,    57,    86,
-      59,    60,    61,    62,    63,    24,    65,    22,   157,   110,
-      69,   153,    71,    -1,    73,    74,    75,    51,    52,    53,
-      54,   175,   139,    57,   185,    59,    60,    61,    62,    63,
-      -1,    65,    -1,    -1,    -1,    69,    -1,    71,    -1,    73,
-      74,    75,    51,    52,    53,    54,    -1,   186,    -1,    51,
+      54,    55,    65,    57,    68,    59,    60,    61,    62,    63,
+      39,    65,    58,    93,    30,    69,    70,    71,   159,    73,
+      74,    75,    51,    52,    53,    54,    55,    86,    57,    61,
+      59,    60,    61,    62,    63,    24,    65,     4,    22,   110,
+      69,   153,    71,   186,    73,    74,    75,    51,    52,    53,
+      54,   175,   139,    57,   157,    59,    60,    61,    62,    63,
+     185,    65,    -1,    -1,    -1,    69,    -1,    71,    -1,    73,
+      74,    75,    51,    52,    53,    54,    -1,    -1,    -1,    51,
       52,    53,    54,    -1,    -1,    -1,    51,    52,    53,    54,
       69,    70,    71,    -1,    73,    74,    75,    69,    -1,    71,
       -1,    73,    74,    75,    69,    -1,    71,    -1,    73,    74,
@@ -843,7 +843,7 @@ static const yytype_int16 yycheck[] =
 static const yytype_int8 yystos[] =
 {
        0,    39,    55,    56,    82,    83,    85,    86,    92,    97,
-      86,    54,     0,    82,    54,    94,    82,    54,    88,    71,
+      86,    54,     0,    83,    97,    54,    94,    54,    88,    71,
       66,    68,    71,    93,    64,    65,    91,    66,    68,    87,
       64,    65,    84,    72,    86,    99,   101,    51,    52,    53,
       54,    71,    73,    74,    75,   109,   110,   111,   112,   113,
@@ -1364,673 +1364,673 @@ yyreduce:
   switch (yyn)
     {
   case 2: /* CompUnit: Decl  */
-#line 40 "SysY.y"
+#line 45 "SysY.y"
                         {show_ast((yyvsp[0].p_ast), 0);}
 #line 1370 "SysY.tab.c"
     break;
 
   case 3: /* CompUnit: FuncDef  */
-#line 41 "SysY.y"
+#line 46 "SysY.y"
                         {show_ast((yyvsp[0].p_ast), 0);}
 #line 1376 "SysY.tab.c"
     break;
 
-  case 4: /* CompUnit: Decl CompUnit  */
-#line 42 "SysY.y"
-                        {show_ast((yyvsp[-1].p_ast), 0);}
+  case 4: /* CompUnit: CompUnit Decl  */
+#line 47 "SysY.y"
+                        {show_ast((yyvsp[0].p_ast), 0);}
 #line 1382 "SysY.tab.c"
     break;
 
-  case 5: /* CompUnit: FuncDef CompUnit  */
-#line 43 "SysY.y"
-                        {show_ast((yyvsp[-1].p_ast), 0);}
+  case 5: /* CompUnit: CompUnit FuncDef  */
+#line 48 "SysY.y"
+                        {show_ast((yyvsp[0].p_ast), 0);}
 #line 1388 "SysY.tab.c"
     break;
 
   case 6: /* Decl: ConstDecl  */
-#line 47 "SysY.y"
+#line 52 "SysY.y"
                         {(yyval.p_ast) = (yyvsp[0].p_ast);}
 #line 1394 "SysY.tab.c"
     break;
 
   case 7: /* Decl: VarDecl  */
-#line 48 "SysY.y"
+#line 53 "SysY.y"
                         {(yyval.p_ast) = (yyvsp[0].p_ast);}
 #line 1400 "SysY.tab.c"
     break;
 
   case 8: /* ConstDecl_A: ',' ConstDef  */
-#line 52 "SysY.y"
+#line 57 "SysY.y"
                                 {(yyval.p_ast) = new_const_decl_a((yyvsp[0].p_ast),NULL);}
 #line 1406 "SysY.tab.c"
     break;
 
   case 9: /* ConstDecl_A: ',' ConstDef ConstDecl_A  */
-#line 53 "SysY.y"
+#line 58 "SysY.y"
                                 {(yyval.p_ast) = new_const_decl_a((yyvsp[-1].p_ast),(yyvsp[0].p_ast));}
 #line 1412 "SysY.tab.c"
     break;
 
   case 10: /* ConstDecl: CONST BType ConstDef ';'  */
-#line 57 "SysY.y"
+#line 62 "SysY.y"
                                         {(yyval.p_ast) = new_const_decl((yyvsp[-2].v_string),(yyvsp[-1].p_ast),NULL);}
 #line 1418 "SysY.tab.c"
     break;
 
   case 11: /* ConstDecl: CONST BType ConstDef ConstDecl_A ';'  */
-#line 58 "SysY.y"
+#line 63 "SysY.y"
                                           {(yyval.p_ast) = new_const_decl((yyvsp[-3].v_string),(yyvsp[-2].p_ast),(yyvsp[-1].p_ast));}
 #line 1424 "SysY.tab.c"
     break;
 
   case 12: /* BType: INT  */
-#line 62 "SysY.y"
+#line 67 "SysY.y"
                                 {(yyval.v_string) = (yyvsp[0].v_string);}
 #line 1430 "SysY.tab.c"
     break;
 
   case 13: /* ConstDef_A: '[' ConstExp ']'  */
-#line 66 "SysY.y"
+#line 71 "SysY.y"
                                         {(yyval.p_ast) = new_const_def_a(NULL,(yyvsp[-1].p_ast));}
 #line 1436 "SysY.tab.c"
     break;
 
   case 14: /* ConstDef_A: '[' ConstExp ']' ConstDef_A  */
-#line 67 "SysY.y"
+#line 72 "SysY.y"
                                         {(yyval.p_ast) = new_const_def_a((yyvsp[-2].p_ast),(yyvsp[0].p_ast));}
 #line 1442 "SysY.tab.c"
     break;
 
   case 15: /* ConstDef: IDENTIFIER '=' ConstInitVal  */
-#line 71 "SysY.y"
+#line 76 "SysY.y"
                                                 {(yyval.p_ast) = new_const_def((yyvsp[-2].v_string),(yyvsp[0].p_ast),NULL);}
 #line 1448 "SysY.tab.c"
     break;
 
   case 16: /* ConstDef: IDENTIFIER ConstDef_A '=' ConstInitVal  */
-#line 72 "SysY.y"
+#line 77 "SysY.y"
                                                 {(yyval.p_ast) = new_const_def((yyvsp[-3].v_string),(yyvsp[0].p_ast),(yyvsp[-2].p_ast));}
 #line 1454 "SysY.tab.c"
     break;
 
   case 17: /* ConstInitVal_A: ',' ConstInitVal  */
-#line 76 "SysY.y"
+#line 81 "SysY.y"
                                         {(yyval.p_ast) = new_const_init_a(NULL,(yyvsp[0].p_ast));}
 #line 1460 "SysY.tab.c"
     break;
 
   case 18: /* ConstInitVal_A: ',' ConstInitVal ConstInitVal_A  */
-#line 77 "SysY.y"
+#line 82 "SysY.y"
                                         {(yyval.p_ast) = new_const_init_a((yyvsp[-1].p_ast),(yyvsp[0].p_ast));}
 #line 1466 "SysY.tab.c"
     break;
 
   case 19: /* ConstInitVal: ConstExp  */
-#line 81 "SysY.y"
+#line 86 "SysY.y"
                                 {(yyval.p_ast) = new_const_init((yyvsp[0].p_ast),NULL,"");}
 #line 1472 "SysY.tab.c"
     break;
 
   case 20: /* ConstInitVal: '{' ConstInitVal '}'  */
-#line 82 "SysY.y"
+#line 87 "SysY.y"
                                 {(yyval.p_ast) = new_const_init((yyvsp[-1].p_ast),NULL,"{}");}
 #line 1478 "SysY.tab.c"
     break;
 
   case 21: /* ConstInitVal: '{' '}'  */
-#line 83 "SysY.y"
+#line 88 "SysY.y"
                                 {(yyval.p_ast) = new_const_init(NULL,NULL,"{}");}
 #line 1484 "SysY.tab.c"
     break;
 
   case 22: /* ConstInitVal: '{' ConstInitVal ConstInitVal_A '}'  */
-#line 84 "SysY.y"
+#line 89 "SysY.y"
                                                 {(yyval.p_ast) = new_const_init((yyvsp[-2].p_ast),(yyvsp[-1].p_ast),"{}");}
 #line 1490 "SysY.tab.c"
     break;
 
   case 23: /* VarDecl_A: ',' VarDef  */
-#line 88 "SysY.y"
+#line 93 "SysY.y"
                                 {(yyval.p_ast) = new_var_decl_a(NULL,(yyvsp[0].p_ast));}
 #line 1496 "SysY.tab.c"
     break;
 
   case 24: /* VarDecl_A: ',' VarDef VarDecl_A  */
-#line 89 "SysY.y"
+#line 94 "SysY.y"
                                 {(yyval.p_ast) = new_var_decl_a((yyvsp[-1].p_ast),(yyvsp[0].p_ast));}
 #line 1502 "SysY.tab.c"
     break;
 
   case 25: /* VarDecl: BType VarDef ';'  */
-#line 93 "SysY.y"
+#line 98 "SysY.y"
                                 {(yyval.p_ast) = new_var_decl((yyvsp[-2].v_string),(yyvsp[-1].p_ast),NULL);}
 #line 1508 "SysY.tab.c"
     break;
 
   case 26: /* VarDecl: BType VarDef VarDecl_A ';'  */
-#line 94 "SysY.y"
+#line 99 "SysY.y"
                                 {(yyval.p_ast) = new_var_decl((yyvsp[-3].v_string),(yyvsp[-2].p_ast),(yyvsp[-1].p_ast));}
 #line 1514 "SysY.tab.c"
     break;
 
   case 27: /* VarDef_A: '[' ConstExp ']'  */
-#line 98 "SysY.y"
+#line 103 "SysY.y"
                                 {(yyval.p_ast) = new_var_def_a((yyvsp[-1].p_ast),NULL);}
 #line 1520 "SysY.tab.c"
     break;
 
   case 28: /* VarDef_A: '[' ConstExp ']' VarDef_A  */
-#line 99 "SysY.y"
+#line 104 "SysY.y"
                                 {(yyval.p_ast) = new_var_def_a((yyvsp[-2].p_ast),(yyvsp[0].p_ast));}
 #line 1526 "SysY.tab.c"
     break;
 
   case 29: /* VarDef: IDENTIFIER  */
-#line 103 "SysY.y"
+#line 108 "SysY.y"
                                         {(yyval.p_ast) = new_var_def((yyvsp[0].v_string),NULL,NULL);}
 #line 1532 "SysY.tab.c"
     break;
 
   case 30: /* VarDef: IDENTIFIER VarDef_A  */
-#line 104 "SysY.y"
+#line 109 "SysY.y"
                                         {(yyval.p_ast) = new_var_def((yyvsp[-1].v_string),(yyvsp[0].p_ast),NULL);}
 #line 1538 "SysY.tab.c"
     break;
 
   case 31: /* VarDef: IDENTIFIER '=' InitVal  */
-#line 105 "SysY.y"
+#line 110 "SysY.y"
                                         {(yyval.p_ast) = new_var_def((yyvsp[-2].v_string),NULL,(yyvsp[0].p_ast));}
 #line 1544 "SysY.tab.c"
     break;
 
   case 32: /* VarDef: IDENTIFIER VarDef_A '=' InitVal  */
-#line 106 "SysY.y"
+#line 111 "SysY.y"
                                         {(yyval.p_ast) = new_var_def((yyvsp[-3].v_string),(yyvsp[-2].p_ast),(yyvsp[0].p_ast));}
 #line 1550 "SysY.tab.c"
     break;
 
   case 33: /* InitVal_A: ',' InitVal  */
-#line 110 "SysY.y"
+#line 115 "SysY.y"
                                         {(yyval.p_ast) = new_init_var_a((yyvsp[0].p_ast),NULL);}
 #line 1556 "SysY.tab.c"
     break;
 
   case 34: /* InitVal_A: ',' InitVal InitVal_A  */
-#line 111 "SysY.y"
+#line 116 "SysY.y"
                                         {(yyval.p_ast) = new_init_var_a((yyvsp[-1].p_ast),(yyvsp[0].p_ast));}
 #line 1562 "SysY.tab.c"
     break;
 
   case 35: /* InitVal: Exp  */
-#line 115 "SysY.y"
+#line 120 "SysY.y"
                                         {(yyval.p_ast) = new_init_var((yyvsp[0].p_ast),NULL,"");}
 #line 1568 "SysY.tab.c"
     break;
 
   case 36: /* InitVal: '{' InitVal '}'  */
-#line 116 "SysY.y"
+#line 121 "SysY.y"
                                         {(yyval.p_ast) = new_init_var((yyvsp[-1].p_ast),NULL,"{}");}
 #line 1574 "SysY.tab.c"
     break;
 
   case 37: /* InitVal: '{' '}'  */
-#line 117 "SysY.y"
+#line 122 "SysY.y"
                                         {(yyval.p_ast) = new_init_var(NULL,NULL,"{}");}
 #line 1580 "SysY.tab.c"
     break;
 
   case 38: /* InitVal: '{' InitVal InitVal_A '}'  */
-#line 118 "SysY.y"
+#line 123 "SysY.y"
                                         {(yyval.p_ast) = new_init_var((yyvsp[-2].p_ast),(yyvsp[-1].p_ast),"{}");}
 #line 1586 "SysY.tab.c"
     break;
 
   case 39: /* FuncDef: VOID IDENTIFIER '(' ')' Block  */
-#line 122 "SysY.y"
+#line 127 "SysY.y"
                                                 {(yyval.p_ast) = new_func_def((yyvsp[-4].v_string),(yyvsp[-3].v_string),NULL,(yyvsp[0].p_ast));}
 #line 1592 "SysY.tab.c"
     break;
 
   case 40: /* FuncDef: VOID IDENTIFIER '(' FuncFParams ')' Block  */
-#line 123 "SysY.y"
+#line 128 "SysY.y"
                                                 {(yyval.p_ast) = new_func_def((yyvsp[-5].v_string),(yyvsp[-4].v_string),(yyvsp[-2].p_ast),(yyvsp[0].p_ast));}
 #line 1598 "SysY.tab.c"
     break;
 
   case 41: /* FuncDef: BType IDENTIFIER '(' ')' Block  */
-#line 124 "SysY.y"
+#line 129 "SysY.y"
                                                 {(yyval.p_ast) = new_func_def((yyvsp[-4].v_string),(yyvsp[-3].v_string),NULL,(yyvsp[0].p_ast));}
 #line 1604 "SysY.tab.c"
     break;
 
   case 42: /* FuncDef: BType IDENTIFIER '(' FuncFParams ')' Block  */
-#line 125 "SysY.y"
+#line 130 "SysY.y"
                                                 {(yyval.p_ast) = new_func_def((yyvsp[-5].v_string),(yyvsp[-4].v_string),(yyvsp[-2].p_ast),(yyvsp[0].p_ast));}
 #line 1610 "SysY.tab.c"
     break;
 
   case 43: /* FuncFParams_A: ',' FuncFParam  */
-#line 129 "SysY.y"
+#line 134 "SysY.y"
                                 {(yyval.p_ast) = new_func_params(NULL, (yyvsp[0].p_ast));}
 #line 1616 "SysY.tab.c"
     break;
 
   case 44: /* FuncFParams_A: FuncFParams_A ',' FuncFParam  */
-#line 130 "SysY.y"
+#line 135 "SysY.y"
                                   {(yyval.p_ast) = new_func_params((yyvsp[0].p_ast), (yyvsp[-2].p_ast));}
 #line 1622 "SysY.tab.c"
     break;
 
   case 45: /* FuncFParams: FuncFParam  */
-#line 134 "SysY.y"
+#line 139 "SysY.y"
                                 {(yyval.p_ast) = new_func_params(NULL, (yyvsp[0].p_ast));}
 #line 1628 "SysY.tab.c"
     break;
 
   case 46: /* FuncFParams: FuncFParam FuncFParams_A  */
-#line 135 "SysY.y"
+#line 140 "SysY.y"
                                 {(yyval.p_ast) = new_func_params((yyvsp[-1].p_ast), (yyvsp[0].p_ast));}
 #line 1634 "SysY.tab.c"
     break;
 
   case 47: /* FuncFParam_A: '[' ']'  */
-#line 139 "SysY.y"
+#line 144 "SysY.y"
                                         {(yyval.p_ast) = new_square_brackets(NULL);}
 #line 1640 "SysY.tab.c"
     break;
 
   case 48: /* FuncFParam_A: '[' Exp ']'  */
-#line 140 "SysY.y"
+#line 145 "SysY.y"
                                         {(yyval.p_ast) = new_square_brackets((yyvsp[-1].p_ast));}
 #line 1646 "SysY.tab.c"
     break;
 
   case 49: /* FuncFParam_A: FuncFParam_A '[' ']'  */
-#line 141 "SysY.y"
+#line 146 "SysY.y"
                                         {(yyval.p_ast) = new_func_param_a((yyvsp[-2].p_ast),NULL);}
 #line 1652 "SysY.tab.c"
     break;
 
   case 50: /* FuncFParam_A: FuncFParam_A '[' Exp ']'  */
-#line 142 "SysY.y"
+#line 147 "SysY.y"
                                         {(yyval.p_ast) = new_func_param_a((yyvsp[-3].p_ast),(yyvsp[-1].p_ast));}
 #line 1658 "SysY.tab.c"
     break;
 
   case 51: /* FuncFParam: BType IDENTIFIER  */
-#line 146 "SysY.y"
+#line 151 "SysY.y"
                                         {(yyval.p_ast) = new_func_param((yyvsp[-1].v_string), (yyvsp[0].v_string), NULL);}
 #line 1664 "SysY.tab.c"
     break;
 
   case 52: /* FuncFParam: BType IDENTIFIER FuncFParam_A  */
-#line 147 "SysY.y"
+#line 152 "SysY.y"
                                         {(yyval.p_ast) = new_func_param((yyvsp[-2].v_string), (yyvsp[-1].v_string), (yyvsp[0].p_ast));}
 #line 1670 "SysY.tab.c"
     break;
 
   case 53: /* Block_A: BlockItem  */
-#line 151 "SysY.y"
+#line 156 "SysY.y"
                                         {(yyval.p_ast) = new_block_a((yyvsp[0].p_ast),NULL);}
 #line 1676 "SysY.tab.c"
     break;
 
   case 54: /* Block_A: BlockItem Block_A  */
-#line 152 "SysY.y"
+#line 157 "SysY.y"
                                         {(yyval.p_ast) = new_block_a((yyvsp[-1].p_ast),(yyvsp[0].p_ast));}
 #line 1682 "SysY.tab.c"
     break;
 
   case 55: /* Block: '{' '}'  */
-#line 156 "SysY.y"
+#line 161 "SysY.y"
                                         {(yyval.p_ast) = new_block(NULL);}
 #line 1688 "SysY.tab.c"
     break;
 
   case 56: /* Block: '{' Block_A '}'  */
-#line 157 "SysY.y"
+#line 162 "SysY.y"
                                         {(yyval.p_ast) = new_block((yyvsp[-1].p_ast));}
 #line 1694 "SysY.tab.c"
     break;
 
   case 57: /* BlockItem: Decl  */
-#line 161 "SysY.y"
+#line 166 "SysY.y"
                 {(yyval.p_ast)=(yyvsp[0].p_ast);}
 #line 1700 "SysY.tab.c"
     break;
 
   case 58: /* BlockItem: Stmt  */
-#line 162 "SysY.y"
+#line 167 "SysY.y"
                 {(yyval.p_ast)=(yyvsp[0].p_ast);}
 #line 1706 "SysY.tab.c"
     break;
 
   case 59: /* Stmt: LVal '=' Exp ';'  */
-#line 166 "SysY.y"
+#line 171 "SysY.y"
                                         {(yyval.p_ast)=new_stmt("=","",(yyvsp[-3].p_ast),(yyvsp[-1].p_ast),NULL);}
 #line 1712 "SysY.tab.c"
     break;
 
   case 60: /* Stmt: ';'  */
-#line 167 "SysY.y"
+#line 172 "SysY.y"
                                         {(yyval.p_ast)=new_stmt("","",NULL,NULL,NULL);}
 #line 1718 "SysY.tab.c"
     break;
 
   case 61: /* Stmt: Exp ';'  */
-#line 168 "SysY.y"
+#line 173 "SysY.y"
                                         {(yyval.p_ast)=new_stmt("","",(yyvsp[-1].p_ast),NULL,NULL);}
 #line 1724 "SysY.tab.c"
     break;
 
   case 62: /* Stmt: Block  */
-#line 169 "SysY.y"
+#line 174 "SysY.y"
                                         {(yyval.p_ast)=new_stmt("","",(yyvsp[0].p_ast),NULL,NULL);}
 #line 1730 "SysY.tab.c"
     break;
 
   case 63: /* Stmt: IF '(' Cond ')' Stmt  */
-#line 170 "SysY.y"
+#line 175 "SysY.y"
                                         {(yyval.p_ast)=new_stmt((yyvsp[-4].v_string),"",(yyvsp[-2].p_ast),(yyvsp[0].p_ast),NULL);}
 #line 1736 "SysY.tab.c"
     break;
 
   case 64: /* Stmt: IF '(' Cond ')' Stmt ELSE Stmt  */
-#line 171 "SysY.y"
+#line 176 "SysY.y"
                                         {(yyval.p_ast)=new_stmt((yyvsp[-6].v_string),(yyvsp[-1].v_string),(yyvsp[-4].p_ast),(yyvsp[-2].p_ast),(yyvsp[0].p_ast));}
 #line 1742 "SysY.tab.c"
     break;
 
   case 65: /* Stmt: WHILE '(' Cond ')' Stmt  */
-#line 172 "SysY.y"
+#line 177 "SysY.y"
                                         {(yyval.p_ast)=new_stmt((yyvsp[-4].v_string),"",(yyvsp[-2].p_ast),(yyvsp[0].p_ast),NULL);}
 #line 1748 "SysY.tab.c"
     break;
 
   case 66: /* Stmt: BREAK ';'  */
-#line 173 "SysY.y"
+#line 178 "SysY.y"
                                         {(yyval.p_ast)=new_stmt((yyvsp[-1].v_string),"",NULL,NULL,NULL);}
 #line 1754 "SysY.tab.c"
     break;
 
   case 67: /* Stmt: CONTINUE ';'  */
-#line 174 "SysY.y"
+#line 179 "SysY.y"
                                         {(yyval.p_ast)=new_stmt((yyvsp[-1].v_string),"",NULL,NULL,NULL);}
 #line 1760 "SysY.tab.c"
     break;
 
   case 68: /* Stmt: RETURN ';'  */
-#line 175 "SysY.y"
+#line 180 "SysY.y"
                                         {(yyval.p_ast)=new_stmt((yyvsp[-1].v_string),"",NULL,NULL,NULL);}
 #line 1766 "SysY.tab.c"
     break;
 
   case 69: /* Stmt: RETURN Exp ';'  */
-#line 176 "SysY.y"
+#line 181 "SysY.y"
                                         {(yyval.p_ast)=new_stmt((yyvsp[-2].v_string),"",(yyvsp[-1].p_ast),NULL,NULL);}
 #line 1772 "SysY.tab.c"
     break;
 
   case 70: /* Stmt: PUTINT '(' ConstExp ')' ';'  */
-#line 177 "SysY.y"
+#line 182 "SysY.y"
                                         {(yyval.p_ast)=new_stmt((yyvsp[-4].v_string),"",(yyvsp[-2].p_ast),NULL,NULL);}
 #line 1778 "SysY.tab.c"
     break;
 
   case 71: /* Exp: AddExp  */
-#line 181 "SysY.y"
+#line 186 "SysY.y"
                 {(yyval.p_ast)=(yyvsp[0].p_ast);}
 #line 1784 "SysY.tab.c"
     break;
 
   case 72: /* Cond: LOrExp  */
-#line 185 "SysY.y"
+#line 190 "SysY.y"
                 {(yyval.p_ast)=(yyvsp[0].p_ast);}
 #line 1790 "SysY.tab.c"
     break;
 
   case 73: /* LVal_A: '[' Exp ']'  */
-#line 189 "SysY.y"
+#line 194 "SysY.y"
                         {(yyval.p_ast) = new_subscript(NULL, (yyvsp[-1].p_ast));}
 #line 1796 "SysY.tab.c"
     break;
 
   case 74: /* LVal_A: '[' Exp ']' LVal_A  */
-#line 190 "SysY.y"
+#line 195 "SysY.y"
                         {(yyval.p_ast) = new_subscript((yyvsp[-2].p_ast), (yyvsp[0].p_ast));}
 #line 1802 "SysY.tab.c"
     break;
 
   case 75: /* LVal: IDENTIFIER  */
-#line 194 "SysY.y"
+#line 199 "SysY.y"
                         {(yyval.p_ast) = new_id((yyvsp[0].v_string));}
 #line 1808 "SysY.tab.c"
     break;
 
   case 76: /* LVal: IDENTIFIER LVal_A  */
-#line 195 "SysY.y"
+#line 200 "SysY.y"
                         {(yyval.p_ast) = new_id_with_subscript((yyvsp[-1].v_string),(yyvsp[0].p_ast));}
 #line 1814 "SysY.tab.c"
     break;
 
   case 77: /* PrimaryExp: '(' Exp ')'  */
-#line 199 "SysY.y"
+#line 204 "SysY.y"
                         {(yyval.p_ast) = (yyvsp[-1].p_ast);}
 #line 1820 "SysY.tab.c"
     break;
 
   case 78: /* PrimaryExp: LVal  */
-#line 200 "SysY.y"
+#line 205 "SysY.y"
                         {(yyval.p_ast) = (yyvsp[0].p_ast);}
 #line 1826 "SysY.tab.c"
     break;
 
   case 79: /* PrimaryExp: Number  */
-#line 201 "SysY.y"
+#line 206 "SysY.y"
                         {(yyval.p_ast) = (yyvsp[0].p_ast);}
 #line 1832 "SysY.tab.c"
     break;
 
   case 80: /* Number: DECIMAL  */
-#line 205 "SysY.y"
+#line 210 "SysY.y"
                         {(yyval.p_ast) = new_dec((yyvsp[0].v_int));}
 #line 1838 "SysY.tab.c"
     break;
 
   case 81: /* Number: OCTAL  */
-#line 206 "SysY.y"
+#line 211 "SysY.y"
                         {(yyval.p_ast) = new_oct((yyvsp[0].v_int));}
 #line 1844 "SysY.tab.c"
     break;
 
   case 82: /* Number: HEXADECIMAL  */
-#line 207 "SysY.y"
+#line 212 "SysY.y"
                         {(yyval.p_ast) = new_hex((yyvsp[0].v_int));}
 #line 1850 "SysY.tab.c"
     break;
 
   case 83: /* UnaryExp: PrimaryExp  */
-#line 211 "SysY.y"
+#line 216 "SysY.y"
                                         {(yyval.p_ast) = (yyvsp[0].p_ast);}
 #line 1856 "SysY.tab.c"
     break;
 
   case 84: /* UnaryExp: IDENTIFIER '(' ')'  */
-#line 212 "SysY.y"
+#line 217 "SysY.y"
                                         {(yyval.p_ast) = new_func_call_id((yyvsp[-2].v_string),NULL);}
 #line 1862 "SysY.tab.c"
     break;
 
   case 85: /* UnaryExp: IDENTIFIER '(' FuncRParams ')'  */
-#line 213 "SysY.y"
+#line 218 "SysY.y"
                                         {(yyval.p_ast) = new_func_call_id((yyvsp[-3].v_string),(yyvsp[-1].p_ast));}
 #line 1868 "SysY.tab.c"
     break;
 
   case 86: /* UnaryExp: UnaryOp UnaryExp  */
-#line 214 "SysY.y"
+#line 219 "SysY.y"
                                         {(yyval.p_ast) = new_exp_with_unary_op((yyvsp[-1].p_ast),(yyvsp[0].p_ast));}
 #line 1874 "SysY.tab.c"
     break;
 
   case 87: /* UnaryOp: '+'  */
-#line 218 "SysY.y"
+#line 223 "SysY.y"
                                         {(yyval.p_ast) = new_unary_op("+");}
 #line 1880 "SysY.tab.c"
     break;
 
   case 88: /* UnaryOp: '-'  */
-#line 219 "SysY.y"
+#line 224 "SysY.y"
                                         {(yyval.p_ast) = new_unary_op("-");}
 #line 1886 "SysY.tab.c"
     break;
 
   case 89: /* UnaryOp: '!'  */
-#line 220 "SysY.y"
+#line 225 "SysY.y"
                                         {(yyval.p_ast) = new_unary_op("!");}
 #line 1892 "SysY.tab.c"
     break;
 
   case 90: /* FuncRParams_A: ',' Exp  */
-#line 224 "SysY.y"
+#line 229 "SysY.y"
                                 {(yyval.p_ast) = new_func_call_params_a(NULL, (yyvsp[0].p_ast));}
 #line 1898 "SysY.tab.c"
     break;
 
   case 91: /* FuncRParams_A: ',' Exp FuncRParams_A  */
-#line 225 "SysY.y"
+#line 230 "SysY.y"
                                 {(yyval.p_ast) = new_func_call_params_a((yyvsp[-1].p_ast), (yyvsp[0].p_ast));}
 #line 1904 "SysY.tab.c"
     break;
 
   case 92: /* FuncRParams: Exp  */
-#line 229 "SysY.y"
+#line 234 "SysY.y"
                                 {(yyval.p_ast) = new_func_call_params(NULL,(yyvsp[0].p_ast));}
 #line 1910 "SysY.tab.c"
     break;
 
   case 93: /* FuncRParams: Exp FuncRParams_A  */
-#line 230 "SysY.y"
+#line 235 "SysY.y"
                                 {(yyval.p_ast) = new_func_call_params((yyvsp[-1].p_ast), (yyvsp[0].p_ast));}
 #line 1916 "SysY.tab.c"
     break;
 
   case 94: /* MulExp: UnaryExp  */
-#line 234 "SysY.y"
+#line 239 "SysY.y"
                                 {(yyval.p_ast) = (yyvsp[0].p_ast);}
 #line 1922 "SysY.tab.c"
     break;
 
   case 95: /* MulExp: MulExp '*' UnaryExp  */
-#line 235 "SysY.y"
+#line 240 "SysY.y"
                                 {(yyval.p_ast) = new_expr('*', (yyvsp[-2].p_ast), (yyvsp[0].p_ast));}
 #line 1928 "SysY.tab.c"
     break;
 
   case 96: /* MulExp: MulExp '/' UnaryExp  */
-#line 236 "SysY.y"
+#line 241 "SysY.y"
                                 {(yyval.p_ast) = new_expr('/', (yyvsp[-2].p_ast), (yyvsp[0].p_ast));}
 #line 1934 "SysY.tab.c"
     break;
 
   case 97: /* MulExp: MulExp '%' UnaryExp  */
-#line 237 "SysY.y"
+#line 242 "SysY.y"
                                 {(yyval.p_ast) = new_expr('%', (yyvsp[-2].p_ast), (yyvsp[0].p_ast));}
 #line 1940 "SysY.tab.c"
     break;
 
   case 98: /* AddExp: MulExp  */
-#line 241 "SysY.y"
+#line 246 "SysY.y"
                                 {(yyval.p_ast) = (yyvsp[0].p_ast);}
 #line 1946 "SysY.tab.c"
     break;
 
   case 99: /* AddExp: AddExp '+' MulExp  */
-#line 242 "SysY.y"
+#line 247 "SysY.y"
                                 {(yyval.p_ast) = new_expr('+', (yyvsp[-2].p_ast), (yyvsp[0].p_ast));}
 #line 1952 "SysY.tab.c"
     break;
 
   case 100: /* AddExp: AddExp '-' MulExp  */
-#line 243 "SysY.y"
+#line 248 "SysY.y"
                                 {(yyval.p_ast) = new_expr('-', (yyvsp[-2].p_ast), (yyvsp[0].p_ast));}
 #line 1958 "SysY.tab.c"
     break;
 
   case 101: /* RelExp: AddExp  */
-#line 247 "SysY.y"
+#line 252 "SysY.y"
                                 {(yyval.p_ast) = new_rel_exp("",(yyvsp[0].p_ast),NULL);}
 #line 1964 "SysY.tab.c"
     break;
 
   case 102: /* RelExp: RelExp '<' AddExp  */
-#line 248 "SysY.y"
+#line 253 "SysY.y"
                                 {(yyval.p_ast) = new_rel_exp("<",(yyvsp[-2].p_ast),(yyvsp[0].p_ast));}
 #line 1970 "SysY.tab.c"
     break;
 
   case 103: /* RelExp: RelExp '>' AddExp  */
-#line 249 "SysY.y"
+#line 254 "SysY.y"
                                 {(yyval.p_ast) = new_rel_exp(">",(yyvsp[-2].p_ast),(yyvsp[0].p_ast));}
 #line 1976 "SysY.tab.c"
     break;
 
   case 104: /* RelExp: RelExp LE_OP AddExp  */
-#line 250 "SysY.y"
+#line 255 "SysY.y"
                                 {(yyval.p_ast) = new_rel_exp("<=",(yyvsp[-2].p_ast),(yyvsp[0].p_ast));}
 #line 1982 "SysY.tab.c"
     break;
 
   case 105: /* RelExp: RelExp GE_OP AddExp  */
-#line 251 "SysY.y"
+#line 256 "SysY.y"
                                 {(yyval.p_ast) = new_rel_exp(">=",(yyvsp[-2].p_ast),(yyvsp[0].p_ast));}
 #line 1988 "SysY.tab.c"
     break;
 
   case 106: /* EqExp: RelExp  */
-#line 255 "SysY.y"
+#line 260 "SysY.y"
                                 {(yyval.p_ast) = new_eq_exp("",(yyvsp[0].p_ast),NULL);}
 #line 1994 "SysY.tab.c"
     break;
 
   case 107: /* EqExp: EqExp EQ_OP RelExp  */
-#line 256 "SysY.y"
+#line 261 "SysY.y"
                                 {(yyval.p_ast) = new_eq_exp("==",(yyvsp[-2].p_ast),(yyvsp[0].p_ast));}
 #line 2000 "SysY.tab.c"
     break;
 
   case 108: /* EqExp: EqExp NE_OP RelExp  */
-#line 257 "SysY.y"
+#line 262 "SysY.y"
                                 {(yyval.p_ast) = new_eq_exp("!=",(yyvsp[-2].p_ast),(yyvsp[0].p_ast));}
 #line 2006 "SysY.tab.c"
     break;
 
   case 109: /* LAndExp: EqExp  */
-#line 261 "SysY.y"
+#line 266 "SysY.y"
                                 {(yyval.p_ast) = new_l_and_exp("",(yyvsp[0].p_ast),NULL);}
 #line 2012 "SysY.tab.c"
     break;
 
   case 110: /* LAndExp: LAndExp AND_OP EqExp  */
-#line 262 "SysY.y"
+#line 267 "SysY.y"
                                 {(yyval.p_ast) = new_l_and_exp("&&",(yyvsp[-2].p_ast),(yyvsp[0].p_ast));}
 #line 2018 "SysY.tab.c"
     break;
 
   case 111: /* LOrExp: LAndExp  */
-#line 266 "SysY.y"
+#line 271 "SysY.y"
                                 {(yyval.p_ast) = new_l_or_exp("",(yyvsp[0].p_ast),NULL);}
 #line 2024 "SysY.tab.c"
     break;
 
   case 112: /* LOrExp: LOrExp OR_OP LAndExp  */
-#line 267 "SysY.y"
+#line 272 "SysY.y"
                                 {(yyval.p_ast) = new_l_or_exp("||",(yyvsp[-2].p_ast),(yyvsp[0].p_ast));}
 #line 2030 "SysY.tab.c"
     break;
 
   case 113: /* ConstExp: AddExp  */
-#line 271 "SysY.y"
+#line 276 "SysY.y"
                         {(yyval.p_ast) = (yyvsp[0].p_ast);}
 #line 2036 "SysY.tab.c"
     break;
@@ -2230,7 +2230,7 @@ yyreturn:
   return yyresult;
 }
 
-#line 274 "SysY.y"
+#line 279 "SysY.y"
 
 extern char yytext[];
 extern int column;
