@@ -1,0 +1,3503 @@
+终端机在文法中未使用
+
+    SIZEOF
+    STRING_LITERAL
+    PTR_OP
+    INC_OP
+    DEC_OP
+    LEFT_OP
+    RIGHT_OP
+    MUL_ASSIGN
+    DIV_ASSIGN
+    MOD_ASSIGN
+    ADD_ASSIGN
+    SUB_ASSIGN
+    LEFT_ASSIGN
+    RIGHT_ASSIGN
+    AND_ASSIGN
+    XOR_ASSIGN
+    OR_ASSIGN
+    TYPE_NAME
+    TYPEDEF
+    EXTERN
+    STATIC
+    AUTO
+    REGISTER
+    CHAR
+    SHORT
+    LONG
+    SIGNED
+    UNSIGNED
+    FLOAT
+    DOUBLE
+    VOLATILE
+    STRUCT
+    UNION
+    ENUM
+    ELLIPSIS
+    CASE
+    DEFAULT
+    SWITCH
+    DO
+    FOR
+    GOTO
+
+
+状态 225 冲突：1 项偏移/归约
+
+
+语法
+
+    0 $accept: Start $end
+
+    1 Start: CompUnit
+
+    2 CompUnit: Decl_G
+    3         | FuncDef
+    4         | Decl_G CompUnit
+    5         | FuncDef CompUnit
+
+    6 Decl_G: ConstDecl
+    7       | VarDecl_G
+
+    8 Decl: ConstDecl
+    9     | VarDecl
+
+   10 ConstDecl_A: ',' ConstDef
+   11            | ',' ConstDef ConstDecl_A
+
+   12 ConstDecl: CONST BType ConstDef ';'
+   13          | CONST BType ConstDef ConstDecl_A ';'
+
+   14 BType: INT
+
+   15 ConstDef_A: '[' ConstExp ']'
+   16           | '[' ConstExp ']' ConstDef_A
+
+   17 ConstDef: IDENTIFIER '=' ConstInitVal
+   18         | IDENTIFIER ConstDef_A '=' ConstInitVal
+
+   19 ConstInitVal_A: ',' ConstInitVal
+   20               | ',' ConstInitVal ConstInitVal_A
+
+   21 ConstInitVal: ConstExp
+   22             | '{' ConstInitVal '}'
+   23             | '{' '}'
+   24             | '{' ConstInitVal ConstInitVal_A '}'
+
+   25 VarDecl_A_G: ',' VarDef_G
+   26            | ',' VarDef_G VarDecl_A_G
+
+   27 VarDecl_A: ',' VarDef
+   28          | ',' VarDef VarDecl_A
+
+   29 VarDecl_G: BType VarDef_G ';'
+   30          | BType VarDef_G VarDecl_A_G ';'
+
+   31 VarDecl: BType VarDef ';'
+   32        | BType VarDef VarDecl_A ';'
+
+   33 VarDef_A: '[' ConstExp ']'
+   34         | '[' ConstExp ']' VarDef_A
+
+   35 VarDef_A_G: '[' ConstExp ']'
+   36           | '[' ConstExp ']' VarDef_A_G
+
+   37 VarDef_G: IDENTIFIER
+   38         | IDENTIFIER VarDef_A_G
+   39         | IDENTIFIER '=' InitVal_G
+   40         | IDENTIFIER VarDef_A_G '=' InitVal_G
+
+   41 VarDef: IDENTIFIER
+   42       | IDENTIFIER VarDef_A
+   43       | IDENTIFIER '=' InitVal
+   44       | IDENTIFIER VarDef_A '=' InitVal
+
+   45 InitVal_A_G: ',' InitVal_G
+   46            | ',' InitVal_G InitVal_A_G
+
+   47 InitVal_A: ',' InitVal
+   48          | ',' InitVal InitVal_A
+
+   49 InitVal_G: ConstExp
+   50          | '{' InitVal_G '}'
+   51          | '{' '}'
+   52          | '{' InitVal_G InitVal_A_G '}'
+
+   53 InitVal: Exp
+   54        | '{' InitVal '}'
+   55        | '{' '}'
+   56        | '{' InitVal InitVal_A '}'
+
+   57 FuncDef: VOID IDENTIFIER '(' ')' Block
+   58        | VOID IDENTIFIER '(' FuncFParams ')' Block
+   59        | BType IDENTIFIER '(' ')' Block
+   60        | BType IDENTIFIER '(' FuncFParams ')' Block
+
+   61 FuncFParams_A: ',' FuncFParam
+   62              | ',' FuncFParam FuncFParams_A
+
+   63 FuncFParams: FuncFParam
+   64            | FuncFParam FuncFParams_A
+
+   65 FuncFParam_A: '[' ']'
+   66             | '[' Exp ']'
+   67             | '[' ']' FuncFParam_A
+   68             | '[' Exp ']' FuncFParam_A
+
+   69 FuncFParam: BType IDENTIFIER
+   70           | BType IDENTIFIER FuncFParam_A
+
+   71 Block_A: BlockItem
+   72        | BlockItem Block_A
+
+   73 Block: '{' '}'
+   74      | '{' Block_A '}'
+
+   75 BlockItem: Decl
+   76          | Stmt
+
+   77 Stmt: LVal '=' Exp ';'
+   78     | ';'
+   79     | Exp ';'
+   80     | Block
+   81     | IF '(' Cond ')' Stmt
+   82     | IF '(' Cond ')' Stmt ELSE Stmt
+   83     | WHILE '(' Cond ')' Stmt
+   84     | BREAK ';'
+   85     | CONTINUE ';'
+   86     | RETURN ';'
+   87     | RETURN Exp ';'
+   88     | PUTINT '(' ConstExp ')' ';'
+
+   89 Exp: AddExp
+
+   90 Cond: LOrExp
+
+   91 LVal_A: '[' Exp ']'
+   92       | '[' Exp ']' LVal_A
+
+   93 LVal: IDENTIFIER
+   94     | IDENTIFIER LVal_A
+
+   95 PrimaryExp: '(' Exp ')'
+   96           | LVal
+   97           | Number
+
+   98 Number: DECIMAL
+   99       | OCTAL
+  100       | HEXADECIMAL
+
+  101 UnaryExp: PrimaryExp
+  102         | IDENTIFIER '(' ')'
+  103         | IDENTIFIER '(' FuncRParams ')'
+  104         | UnaryOp UnaryExp
+
+  105 UnaryOp: '+'
+  106        | '-'
+  107        | '!'
+
+  108 FuncRParams_A: ',' Exp
+  109              | ',' Exp FuncRParams_A
+
+  110 FuncRParams: Exp
+  111            | Exp FuncRParams_A
+
+  112 MulExp: UnaryExp
+  113       | MulExp '*' UnaryExp
+  114       | MulExp '/' UnaryExp
+  115       | MulExp '%' UnaryExp
+
+  116 AddExp: MulExp
+  117       | AddExp '+' MulExp
+  118       | AddExp '-' MulExp
+
+  119 RelExp: AddExp
+  120       | RelExp '<' AddExp
+  121       | RelExp '>' AddExp
+  122       | RelExp LE_OP AddExp
+  123       | RelExp GE_OP AddExp
+
+  124 EqExp: RelExp
+  125      | EqExp EQ_OP RelExp
+  126      | EqExp NE_OP RelExp
+
+  127 LAndExp: EqExp
+  128        | LAndExp AND_OP EqExp
+
+  129 LOrExp: LAndExp
+  130       | LOrExp OR_OP LAndExp
+
+  131 ConstExp: ConstAddExp
+
+  132 ConstAddExp: ConstMulExp
+  133            | ConstAddExp '+' ConstMulExp
+  134            | ConstAddExp '-' ConstMulExp
+
+  135 ConstMulExp: ConstUnaryExp
+  136            | ConstMulExp '*' ConstUnaryExp
+  137            | ConstMulExp '/' ConstUnaryExp
+  138            | ConstMulExp '%' ConstUnaryExp
+
+  139 ConstUnaryExp: ConstPrimaryExp
+  140              | UnaryOp ConstUnaryExp
+
+  141 ConstPrimaryExp: '(' ConstExp ')'
+  142                | Number
+
+
+终结语词，附有它们出现处的规则
+
+    $end (0) 0
+    '!' (33) 107
+    '%' (37) 115 138
+    '(' (40) 57 58 59 60 81 82 83 88 95 102 103 141
+    ')' (41) 57 58 59 60 81 82 83 88 95 102 103 141
+    '*' (42) 113 136
+    '+' (43) 105 117 133
+    ',' (44) 10 11 19 20 25 26 27 28 45 46 47 48 61 62 108 109
+    '-' (45) 106 118 134
+    '/' (47) 114 137
+    ';' (59) 12 13 29 30 31 32 77 78 79 84 85 86 87 88
+    '<' (60) 120
+    '=' (61) 17 18 39 40 43 44 77
+    '>' (62) 121
+    '[' (91) 15 16 33 34 35 36 65 66 67 68 91 92
+    ']' (93) 15 16 33 34 35 36 65 66 67 68 91 92
+    '{' (123) 22 23 24 50 51 52 54 55 56 73 74
+    '}' (125) 22 23 24 50 51 52 54 55 56 73 74
+    error (256)
+    SIZEOF (258)
+    STRING_LITERAL (259)
+    PTR_OP (260)
+    INC_OP (261)
+    DEC_OP (262)
+    LEFT_OP (263)
+    RIGHT_OP (264)
+    LE_OP (265) 122
+    GE_OP (266) 123
+    EQ_OP (267) 125
+    NE_OP (268) 126
+    AND_OP (269) 128
+    OR_OP (270) 130
+    MUL_ASSIGN (271)
+    DIV_ASSIGN (272)
+    MOD_ASSIGN (273)
+    ADD_ASSIGN (274)
+    SUB_ASSIGN (275)
+    LEFT_ASSIGN (276)
+    RIGHT_ASSIGN (277)
+    AND_ASSIGN (278)
+    XOR_ASSIGN (279)
+    OR_ASSIGN (280)
+    TYPE_NAME (281)
+    TYPEDEF (282)
+    EXTERN (283)
+    STATIC (284)
+    AUTO (285)
+    REGISTER (286)
+    CHAR (287)
+    SHORT (288)
+    LONG (289)
+    SIGNED (290)
+    UNSIGNED (291)
+    FLOAT (292)
+    DOUBLE (293)
+    CONST (294) 12 13
+    VOLATILE (295)
+    STRUCT (296)
+    UNION (297)
+    ENUM (298)
+    ELLIPSIS (299)
+    CASE (300)
+    DEFAULT (301)
+    SWITCH (302)
+    DO (303)
+    FOR (304)
+    GOTO (305)
+    DECIMAL <v_int> (306) 98
+    OCTAL <v_int> (307) 99
+    HEXADECIMAL <v_int> (308) 100
+    IDENTIFIER <v_string> (309) 17 18 37 38 39 40 41 42 43 44 57 58 59 60 69 70 93 94 102 103
+    INT <v_string> (310) 14
+    VOID <v_string> (311) 57 58
+    IF <v_string> (312) 81 82
+    ELSE <v_string> (313) 82
+    WHILE <v_string> (314) 83
+    CONTINUE <v_string> (315) 85
+    BREAK <v_string> (316) 84
+    RETURN <v_string> (317) 86 87
+    PUTINT <v_string> (318) 88
+
+
+非终结语词，附有它们出现处的规则
+
+    $accept (81)
+        on left: 0
+    Start <p_ast> (82)
+        on left: 1
+        on right: 0
+    CompUnit <p_ast> (83)
+        on left: 2 3 4 5
+        on right: 1 4 5
+    Decl_G <p_ast> (84)
+        on left: 6 7
+        on right: 2 4
+    Decl <p_ast> (85)
+        on left: 8 9
+        on right: 75
+    ConstDecl_A <p_ast> (86)
+        on left: 10 11
+        on right: 11 13
+    ConstDecl <p_ast> (87)
+        on left: 12 13
+        on right: 6 8
+    BType <v_string> (88)
+        on left: 14
+        on right: 12 13 29 30 31 32 59 60 69 70
+    ConstDef_A <p_ast> (89)
+        on left: 15 16
+        on right: 16 18
+    ConstDef <p_ast> (90)
+        on left: 17 18
+        on right: 10 11 12 13
+    ConstInitVal_A <p_ast> (91)
+        on left: 19 20
+        on right: 20 24
+    ConstInitVal <p_ast> (92)
+        on left: 21 22 23 24
+        on right: 17 18 19 20 22 24
+    VarDecl_A_G <p_ast> (93)
+        on left: 25 26
+        on right: 26 30
+    VarDecl_A <p_ast> (94)
+        on left: 27 28
+        on right: 28 32
+    VarDecl_G <p_ast> (95)
+        on left: 29 30
+        on right: 7
+    VarDecl <p_ast> (96)
+        on left: 31 32
+        on right: 9
+    VarDef_A <p_ast> (97)
+        on left: 33 34
+        on right: 34 42 44
+    VarDef_A_G <p_ast> (98)
+        on left: 35 36
+        on right: 36 38 40
+    VarDef_G <p_ast> (99)
+        on left: 37 38 39 40
+        on right: 25 26 29 30
+    VarDef <p_ast> (100)
+        on left: 41 42 43 44
+        on right: 27 28 31 32
+    InitVal_A_G <p_ast> (101)
+        on left: 45 46
+        on right: 46 52
+    InitVal_A <p_ast> (102)
+        on left: 47 48
+        on right: 48 56
+    InitVal_G <p_ast> (103)
+        on left: 49 50 51 52
+        on right: 39 40 45 46 50 52
+    InitVal <p_ast> (104)
+        on left: 53 54 55 56
+        on right: 43 44 47 48 54 56
+    FuncDef <p_ast> (105)
+        on left: 57 58 59 60
+        on right: 3 5
+    FuncFParams_A <p_ast> (106)
+        on left: 61 62
+        on right: 62 64
+    FuncFParams <p_ast> (107)
+        on left: 63 64
+        on right: 58 60
+    FuncFParam_A <p_ast> (108)
+        on left: 65 66 67 68
+        on right: 67 68 70
+    FuncFParam <p_ast> (109)
+        on left: 69 70
+        on right: 61 62 63 64
+    Block_A <p_ast> (110)
+        on left: 71 72
+        on right: 72 74
+    Block <p_ast> (111)
+        on left: 73 74
+        on right: 57 58 59 60 80
+    BlockItem <p_ast> (112)
+        on left: 75 76
+        on right: 71 72
+    Stmt <p_ast> (113)
+        on left: 77 78 79 80 81 82 83 84 85 86 87 88
+        on right: 76 81 82 83
+    Exp <p_ast> (114)
+        on left: 89
+        on right: 53 66 68 77 79 87 91 92 95 108 109 110 111
+    Cond <p_ast> (115)
+        on left: 90
+        on right: 81 82 83
+    LVal_A <p_ast> (116)
+        on left: 91 92
+        on right: 92 94
+    LVal <p_ast> (117)
+        on left: 93 94
+        on right: 77 96
+    PrimaryExp <p_ast> (118)
+        on left: 95 96 97
+        on right: 101
+    Number <p_ast> (119)
+        on left: 98 99 100
+        on right: 97 142
+    UnaryExp <p_ast> (120)
+        on left: 101 102 103 104
+        on right: 104 112 113 114 115
+    UnaryOp <p_ast> (121)
+        on left: 105 106 107
+        on right: 104 140
+    FuncRParams_A <p_ast> (122)
+        on left: 108 109
+        on right: 109 111
+    FuncRParams <p_ast> (123)
+        on left: 110 111
+        on right: 103
+    MulExp <p_ast> (124)
+        on left: 112 113 114 115
+        on right: 113 114 115 116 117 118
+    AddExp <p_ast> (125)
+        on left: 116 117 118
+        on right: 89 117 118 119 120 121 122 123
+    RelExp <p_ast> (126)
+        on left: 119 120 121 122 123
+        on right: 120 121 122 123 124 125 126
+    EqExp <p_ast> (127)
+        on left: 124 125 126
+        on right: 125 126 127 128
+    LAndExp <p_ast> (128)
+        on left: 127 128
+        on right: 128 129 130
+    LOrExp <p_ast> (129)
+        on left: 129 130
+        on right: 90 130
+    ConstExp <p_ast> (130)
+        on left: 131
+        on right: 15 16 21 33 34 35 36 49 88 141
+    ConstAddExp <p_ast> (131)
+        on left: 132 133 134
+        on right: 131 133 134
+    ConstMulExp <p_ast> (132)
+        on left: 135 136 137 138
+        on right: 132 133 134 136 137 138
+    ConstUnaryExp <p_ast> (133)
+        on left: 139 140
+        on right: 135 136 137 138 140
+    ConstPrimaryExp <p_ast> (134)
+        on left: 141 142
+        on right: 139
+
+
+状态 0
+
+    0 $accept: . Start $end
+
+    CONST  偏移，并进入状态 1
+    INT    偏移，并进入状态 2
+    VOID   偏移，并进入状态 3
+
+    Start      转到状态 4
+    CompUnit   转到状态 5
+    Decl_G     转到状态 6
+    ConstDecl  转到状态 7
+    BType      转到状态 8
+    VarDecl_G  转到状态 9
+    FuncDef    转到状态 10
+
+
+状态 1
+
+   12 ConstDecl: CONST . BType ConstDef ';'
+   13          | CONST . BType ConstDef ConstDecl_A ';'
+
+    INT  偏移，并进入状态 2
+
+    BType  转到状态 11
+
+
+状态 2
+
+   14 BType: INT .
+
+    $default  使用规则 14 以归约 (BType)
+
+
+状态 3
+
+   57 FuncDef: VOID . IDENTIFIER '(' ')' Block
+   58        | VOID . IDENTIFIER '(' FuncFParams ')' Block
+
+    IDENTIFIER  偏移，并进入状态 12
+
+
+状态 4
+
+    0 $accept: Start . $end
+
+    $end  偏移，并进入状态 13
+
+
+状态 5
+
+    1 Start: CompUnit .
+
+    $default  使用规则 1 以归约 (Start)
+
+
+状态 6
+
+    2 CompUnit: Decl_G .
+    4         | Decl_G . CompUnit
+
+    CONST  偏移，并进入状态 1
+    INT    偏移，并进入状态 2
+    VOID   偏移，并进入状态 3
+
+    $default  使用规则 2 以归约 (CompUnit)
+
+    CompUnit   转到状态 14
+    Decl_G     转到状态 6
+    ConstDecl  转到状态 7
+    BType      转到状态 8
+    VarDecl_G  转到状态 9
+    FuncDef    转到状态 10
+
+
+状态 7
+
+    6 Decl_G: ConstDecl .
+
+    $default  使用规则 6 以归约 (Decl_G)
+
+
+状态 8
+
+   29 VarDecl_G: BType . VarDef_G ';'
+   30          | BType . VarDef_G VarDecl_A_G ';'
+   59 FuncDef: BType . IDENTIFIER '(' ')' Block
+   60        | BType . IDENTIFIER '(' FuncFParams ')' Block
+
+    IDENTIFIER  偏移，并进入状态 15
+
+    VarDef_G  转到状态 16
+
+
+状态 9
+
+    7 Decl_G: VarDecl_G .
+
+    $default  使用规则 7 以归约 (Decl_G)
+
+
+状态 10
+
+    3 CompUnit: FuncDef .
+    5         | FuncDef . CompUnit
+
+    CONST  偏移，并进入状态 1
+    INT    偏移，并进入状态 2
+    VOID   偏移，并进入状态 3
+
+    $default  使用规则 3 以归约 (CompUnit)
+
+    CompUnit   转到状态 17
+    Decl_G     转到状态 6
+    ConstDecl  转到状态 7
+    BType      转到状态 8
+    VarDecl_G  转到状态 9
+    FuncDef    转到状态 10
+
+
+状态 11
+
+   12 ConstDecl: CONST BType . ConstDef ';'
+   13          | CONST BType . ConstDef ConstDecl_A ';'
+
+    IDENTIFIER  偏移，并进入状态 18
+
+    ConstDef  转到状态 19
+
+
+状态 12
+
+   57 FuncDef: VOID IDENTIFIER . '(' ')' Block
+   58        | VOID IDENTIFIER . '(' FuncFParams ')' Block
+
+    '('  偏移，并进入状态 20
+
+
+状态 13
+
+    0 $accept: Start $end .
+
+    $default  接受
+
+
+状态 14
+
+    4 CompUnit: Decl_G CompUnit .
+
+    $default  使用规则 4 以归约 (CompUnit)
+
+
+状态 15
+
+   37 VarDef_G: IDENTIFIER .
+   38         | IDENTIFIER . VarDef_A_G
+   39         | IDENTIFIER . '=' InitVal_G
+   40         | IDENTIFIER . VarDef_A_G '=' InitVal_G
+   59 FuncDef: BType IDENTIFIER . '(' ')' Block
+   60        | BType IDENTIFIER . '(' FuncFParams ')' Block
+
+    '['  偏移，并进入状态 21
+    '='  偏移，并进入状态 22
+    '('  偏移，并进入状态 23
+
+    $default  使用规则 37 以归约 (VarDef_G)
+
+    VarDef_A_G  转到状态 24
+
+
+状态 16
+
+   29 VarDecl_G: BType VarDef_G . ';'
+   30          | BType VarDef_G . VarDecl_A_G ';'
+
+    ','  偏移，并进入状态 25
+    ';'  偏移，并进入状态 26
+
+    VarDecl_A_G  转到状态 27
+
+
+状态 17
+
+    5 CompUnit: FuncDef CompUnit .
+
+    $default  使用规则 5 以归约 (CompUnit)
+
+
+状态 18
+
+   17 ConstDef: IDENTIFIER . '=' ConstInitVal
+   18         | IDENTIFIER . ConstDef_A '=' ConstInitVal
+
+    '['  偏移，并进入状态 28
+    '='  偏移，并进入状态 29
+
+    ConstDef_A  转到状态 30
+
+
+状态 19
+
+   12 ConstDecl: CONST BType ConstDef . ';'
+   13          | CONST BType ConstDef . ConstDecl_A ';'
+
+    ','  偏移，并进入状态 31
+    ';'  偏移，并进入状态 32
+
+    ConstDecl_A  转到状态 33
+
+
+状态 20
+
+   57 FuncDef: VOID IDENTIFIER '(' . ')' Block
+   58        | VOID IDENTIFIER '(' . FuncFParams ')' Block
+
+    INT  偏移，并进入状态 2
+    ')'  偏移，并进入状态 34
+
+    BType        转到状态 35
+    FuncFParams  转到状态 36
+    FuncFParam   转到状态 37
+
+
+状态 21
+
+   35 VarDef_A_G: '[' . ConstExp ']'
+   36           | '[' . ConstExp ']' VarDef_A_G
+
+    DECIMAL      偏移，并进入状态 38
+    OCTAL        偏移，并进入状态 39
+    HEXADECIMAL  偏移，并进入状态 40
+    '('          偏移，并进入状态 41
+    '+'          偏移，并进入状态 42
+    '-'          偏移，并进入状态 43
+    '!'          偏移，并进入状态 44
+
+    Number           转到状态 45
+    UnaryOp          转到状态 46
+    ConstExp         转到状态 47
+    ConstAddExp      转到状态 48
+    ConstMulExp      转到状态 49
+    ConstUnaryExp    转到状态 50
+    ConstPrimaryExp  转到状态 51
+
+
+状态 22
+
+   39 VarDef_G: IDENTIFIER '=' . InitVal_G
+
+    DECIMAL      偏移，并进入状态 38
+    OCTAL        偏移，并进入状态 39
+    HEXADECIMAL  偏移，并进入状态 40
+    '{'          偏移，并进入状态 52
+    '('          偏移，并进入状态 41
+    '+'          偏移，并进入状态 42
+    '-'          偏移，并进入状态 43
+    '!'          偏移，并进入状态 44
+
+    InitVal_G        转到状态 53
+    Number           转到状态 45
+    UnaryOp          转到状态 46
+    ConstExp         转到状态 54
+    ConstAddExp      转到状态 48
+    ConstMulExp      转到状态 49
+    ConstUnaryExp    转到状态 50
+    ConstPrimaryExp  转到状态 51
+
+
+状态 23
+
+   59 FuncDef: BType IDENTIFIER '(' . ')' Block
+   60        | BType IDENTIFIER '(' . FuncFParams ')' Block
+
+    INT  偏移，并进入状态 2
+    ')'  偏移，并进入状态 55
+
+    BType        转到状态 35
+    FuncFParams  转到状态 56
+    FuncFParam   转到状态 37
+
+
+状态 24
+
+   38 VarDef_G: IDENTIFIER VarDef_A_G .
+   40         | IDENTIFIER VarDef_A_G . '=' InitVal_G
+
+    '='  偏移，并进入状态 57
+
+    $default  使用规则 38 以归约 (VarDef_G)
+
+
+状态 25
+
+   25 VarDecl_A_G: ',' . VarDef_G
+   26            | ',' . VarDef_G VarDecl_A_G
+
+    IDENTIFIER  偏移，并进入状态 58
+
+    VarDef_G  转到状态 59
+
+
+状态 26
+
+   29 VarDecl_G: BType VarDef_G ';' .
+
+    $default  使用规则 29 以归约 (VarDecl_G)
+
+
+状态 27
+
+   30 VarDecl_G: BType VarDef_G VarDecl_A_G . ';'
+
+    ';'  偏移，并进入状态 60
+
+
+状态 28
+
+   15 ConstDef_A: '[' . ConstExp ']'
+   16           | '[' . ConstExp ']' ConstDef_A
+
+    DECIMAL      偏移，并进入状态 38
+    OCTAL        偏移，并进入状态 39
+    HEXADECIMAL  偏移，并进入状态 40
+    '('          偏移，并进入状态 41
+    '+'          偏移，并进入状态 42
+    '-'          偏移，并进入状态 43
+    '!'          偏移，并进入状态 44
+
+    Number           转到状态 45
+    UnaryOp          转到状态 46
+    ConstExp         转到状态 61
+    ConstAddExp      转到状态 48
+    ConstMulExp      转到状态 49
+    ConstUnaryExp    转到状态 50
+    ConstPrimaryExp  转到状态 51
+
+
+状态 29
+
+   17 ConstDef: IDENTIFIER '=' . ConstInitVal
+
+    DECIMAL      偏移，并进入状态 38
+    OCTAL        偏移，并进入状态 39
+    HEXADECIMAL  偏移，并进入状态 40
+    '{'          偏移，并进入状态 62
+    '('          偏移，并进入状态 41
+    '+'          偏移，并进入状态 42
+    '-'          偏移，并进入状态 43
+    '!'          偏移，并进入状态 44
+
+    ConstInitVal     转到状态 63
+    Number           转到状态 45
+    UnaryOp          转到状态 46
+    ConstExp         转到状态 64
+    ConstAddExp      转到状态 48
+    ConstMulExp      转到状态 49
+    ConstUnaryExp    转到状态 50
+    ConstPrimaryExp  转到状态 51
+
+
+状态 30
+
+   18 ConstDef: IDENTIFIER ConstDef_A . '=' ConstInitVal
+
+    '='  偏移，并进入状态 65
+
+
+状态 31
+
+   10 ConstDecl_A: ',' . ConstDef
+   11            | ',' . ConstDef ConstDecl_A
+
+    IDENTIFIER  偏移，并进入状态 18
+
+    ConstDef  转到状态 66
+
+
+状态 32
+
+   12 ConstDecl: CONST BType ConstDef ';' .
+
+    $default  使用规则 12 以归约 (ConstDecl)
+
+
+状态 33
+
+   13 ConstDecl: CONST BType ConstDef ConstDecl_A . ';'
+
+    ';'  偏移，并进入状态 67
+
+
+状态 34
+
+   57 FuncDef: VOID IDENTIFIER '(' ')' . Block
+
+    '{'  偏移，并进入状态 68
+
+    Block  转到状态 69
+
+
+状态 35
+
+   69 FuncFParam: BType . IDENTIFIER
+   70           | BType . IDENTIFIER FuncFParam_A
+
+    IDENTIFIER  偏移，并进入状态 70
+
+
+状态 36
+
+   58 FuncDef: VOID IDENTIFIER '(' FuncFParams . ')' Block
+
+    ')'  偏移，并进入状态 71
+
+
+状态 37
+
+   63 FuncFParams: FuncFParam .
+   64            | FuncFParam . FuncFParams_A
+
+    ','  偏移，并进入状态 72
+
+    $default  使用规则 63 以归约 (FuncFParams)
+
+    FuncFParams_A  转到状态 73
+
+
+状态 38
+
+   98 Number: DECIMAL .
+
+    $default  使用规则 98 以归约 (Number)
+
+
+状态 39
+
+   99 Number: OCTAL .
+
+    $default  使用规则 99 以归约 (Number)
+
+
+状态 40
+
+  100 Number: HEXADECIMAL .
+
+    $default  使用规则 100 以归约 (Number)
+
+
+状态 41
+
+  141 ConstPrimaryExp: '(' . ConstExp ')'
+
+    DECIMAL      偏移，并进入状态 38
+    OCTAL        偏移，并进入状态 39
+    HEXADECIMAL  偏移，并进入状态 40
+    '('          偏移，并进入状态 41
+    '+'          偏移，并进入状态 42
+    '-'          偏移，并进入状态 43
+    '!'          偏移，并进入状态 44
+
+    Number           转到状态 45
+    UnaryOp          转到状态 46
+    ConstExp         转到状态 74
+    ConstAddExp      转到状态 48
+    ConstMulExp      转到状态 49
+    ConstUnaryExp    转到状态 50
+    ConstPrimaryExp  转到状态 51
+
+
+状态 42
+
+  105 UnaryOp: '+' .
+
+    $default  使用规则 105 以归约 (UnaryOp)
+
+
+状态 43
+
+  106 UnaryOp: '-' .
+
+    $default  使用规则 106 以归约 (UnaryOp)
+
+
+状态 44
+
+  107 UnaryOp: '!' .
+
+    $default  使用规则 107 以归约 (UnaryOp)
+
+
+状态 45
+
+  142 ConstPrimaryExp: Number .
+
+    $default  使用规则 142 以归约 (ConstPrimaryExp)
+
+
+状态 46
+
+  140 ConstUnaryExp: UnaryOp . ConstUnaryExp
+
+    DECIMAL      偏移，并进入状态 38
+    OCTAL        偏移，并进入状态 39
+    HEXADECIMAL  偏移，并进入状态 40
+    '('          偏移，并进入状态 41
+    '+'          偏移，并进入状态 42
+    '-'          偏移，并进入状态 43
+    '!'          偏移，并进入状态 44
+
+    Number           转到状态 45
+    UnaryOp          转到状态 46
+    ConstUnaryExp    转到状态 75
+    ConstPrimaryExp  转到状态 51
+
+
+状态 47
+
+   35 VarDef_A_G: '[' ConstExp . ']'
+   36           | '[' ConstExp . ']' VarDef_A_G
+
+    ']'  偏移，并进入状态 76
+
+
+状态 48
+
+  131 ConstExp: ConstAddExp .
+  133 ConstAddExp: ConstAddExp . '+' ConstMulExp
+  134            | ConstAddExp . '-' ConstMulExp
+
+    '+'  偏移，并进入状态 77
+    '-'  偏移，并进入状态 78
+
+    $default  使用规则 131 以归约 (ConstExp)
+
+
+状态 49
+
+  132 ConstAddExp: ConstMulExp .
+  136 ConstMulExp: ConstMulExp . '*' ConstUnaryExp
+  137            | ConstMulExp . '/' ConstUnaryExp
+  138            | ConstMulExp . '%' ConstUnaryExp
+
+    '*'  偏移，并进入状态 79
+    '/'  偏移，并进入状态 80
+    '%'  偏移，并进入状态 81
+
+    $default  使用规则 132 以归约 (ConstAddExp)
+
+
+状态 50
+
+  135 ConstMulExp: ConstUnaryExp .
+
+    $default  使用规则 135 以归约 (ConstMulExp)
+
+
+状态 51
+
+  139 ConstUnaryExp: ConstPrimaryExp .
+
+    $default  使用规则 139 以归约 (ConstUnaryExp)
+
+
+状态 52
+
+   50 InitVal_G: '{' . InitVal_G '}'
+   51          | '{' . '}'
+   52          | '{' . InitVal_G InitVal_A_G '}'
+
+    DECIMAL      偏移，并进入状态 38
+    OCTAL        偏移，并进入状态 39
+    HEXADECIMAL  偏移，并进入状态 40
+    '{'          偏移，并进入状态 52
+    '}'          偏移，并进入状态 82
+    '('          偏移，并进入状态 41
+    '+'          偏移，并进入状态 42
+    '-'          偏移，并进入状态 43
+    '!'          偏移，并进入状态 44
+
+    InitVal_G        转到状态 83
+    Number           转到状态 45
+    UnaryOp          转到状态 46
+    ConstExp         转到状态 54
+    ConstAddExp      转到状态 48
+    ConstMulExp      转到状态 49
+    ConstUnaryExp    转到状态 50
+    ConstPrimaryExp  转到状态 51
+
+
+状态 53
+
+   39 VarDef_G: IDENTIFIER '=' InitVal_G .
+
+    $default  使用规则 39 以归约 (VarDef_G)
+
+
+状态 54
+
+   49 InitVal_G: ConstExp .
+
+    $default  使用规则 49 以归约 (InitVal_G)
+
+
+状态 55
+
+   59 FuncDef: BType IDENTIFIER '(' ')' . Block
+
+    '{'  偏移，并进入状态 68
+
+    Block  转到状态 84
+
+
+状态 56
+
+   60 FuncDef: BType IDENTIFIER '(' FuncFParams . ')' Block
+
+    ')'  偏移，并进入状态 85
+
+
+状态 57
+
+   40 VarDef_G: IDENTIFIER VarDef_A_G '=' . InitVal_G
+
+    DECIMAL      偏移，并进入状态 38
+    OCTAL        偏移，并进入状态 39
+    HEXADECIMAL  偏移，并进入状态 40
+    '{'          偏移，并进入状态 52
+    '('          偏移，并进入状态 41
+    '+'          偏移，并进入状态 42
+    '-'          偏移，并进入状态 43
+    '!'          偏移，并进入状态 44
+
+    InitVal_G        转到状态 86
+    Number           转到状态 45
+    UnaryOp          转到状态 46
+    ConstExp         转到状态 54
+    ConstAddExp      转到状态 48
+    ConstMulExp      转到状态 49
+    ConstUnaryExp    转到状态 50
+    ConstPrimaryExp  转到状态 51
+
+
+状态 58
+
+   37 VarDef_G: IDENTIFIER .
+   38         | IDENTIFIER . VarDef_A_G
+   39         | IDENTIFIER . '=' InitVal_G
+   40         | IDENTIFIER . VarDef_A_G '=' InitVal_G
+
+    '['  偏移，并进入状态 21
+    '='  偏移，并进入状态 22
+
+    $default  使用规则 37 以归约 (VarDef_G)
+
+    VarDef_A_G  转到状态 24
+
+
+状态 59
+
+   25 VarDecl_A_G: ',' VarDef_G .
+   26            | ',' VarDef_G . VarDecl_A_G
+
+    ','  偏移，并进入状态 25
+
+    $default  使用规则 25 以归约 (VarDecl_A_G)
+
+    VarDecl_A_G  转到状态 87
+
+
+状态 60
+
+   30 VarDecl_G: BType VarDef_G VarDecl_A_G ';' .
+
+    $default  使用规则 30 以归约 (VarDecl_G)
+
+
+状态 61
+
+   15 ConstDef_A: '[' ConstExp . ']'
+   16           | '[' ConstExp . ']' ConstDef_A
+
+    ']'  偏移，并进入状态 88
+
+
+状态 62
+
+   22 ConstInitVal: '{' . ConstInitVal '}'
+   23             | '{' . '}'
+   24             | '{' . ConstInitVal ConstInitVal_A '}'
+
+    DECIMAL      偏移，并进入状态 38
+    OCTAL        偏移，并进入状态 39
+    HEXADECIMAL  偏移，并进入状态 40
+    '{'          偏移，并进入状态 62
+    '}'          偏移，并进入状态 89
+    '('          偏移，并进入状态 41
+    '+'          偏移，并进入状态 42
+    '-'          偏移，并进入状态 43
+    '!'          偏移，并进入状态 44
+
+    ConstInitVal     转到状态 90
+    Number           转到状态 45
+    UnaryOp          转到状态 46
+    ConstExp         转到状态 64
+    ConstAddExp      转到状态 48
+    ConstMulExp      转到状态 49
+    ConstUnaryExp    转到状态 50
+    ConstPrimaryExp  转到状态 51
+
+
+状态 63
+
+   17 ConstDef: IDENTIFIER '=' ConstInitVal .
+
+    $default  使用规则 17 以归约 (ConstDef)
+
+
+状态 64
+
+   21 ConstInitVal: ConstExp .
+
+    $default  使用规则 21 以归约 (ConstInitVal)
+
+
+状态 65
+
+   18 ConstDef: IDENTIFIER ConstDef_A '=' . ConstInitVal
+
+    DECIMAL      偏移，并进入状态 38
+    OCTAL        偏移，并进入状态 39
+    HEXADECIMAL  偏移，并进入状态 40
+    '{'          偏移，并进入状态 62
+    '('          偏移，并进入状态 41
+    '+'          偏移，并进入状态 42
+    '-'          偏移，并进入状态 43
+    '!'          偏移，并进入状态 44
+
+    ConstInitVal     转到状态 91
+    Number           转到状态 45
+    UnaryOp          转到状态 46
+    ConstExp         转到状态 64
+    ConstAddExp      转到状态 48
+    ConstMulExp      转到状态 49
+    ConstUnaryExp    转到状态 50
+    ConstPrimaryExp  转到状态 51
+
+
+状态 66
+
+   10 ConstDecl_A: ',' ConstDef .
+   11            | ',' ConstDef . ConstDecl_A
+
+    ','  偏移，并进入状态 31
+
+    $default  使用规则 10 以归约 (ConstDecl_A)
+
+    ConstDecl_A  转到状态 92
+
+
+状态 67
+
+   13 ConstDecl: CONST BType ConstDef ConstDecl_A ';' .
+
+    $default  使用规则 13 以归约 (ConstDecl)
+
+
+状态 68
+
+   73 Block: '{' . '}'
+   74      | '{' . Block_A '}'
+
+    CONST        偏移，并进入状态 1
+    DECIMAL      偏移，并进入状态 38
+    OCTAL        偏移，并进入状态 39
+    HEXADECIMAL  偏移，并进入状态 40
+    IDENTIFIER   偏移，并进入状态 93
+    INT          偏移，并进入状态 2
+    IF           偏移，并进入状态 94
+    WHILE        偏移，并进入状态 95
+    CONTINUE     偏移，并进入状态 96
+    BREAK        偏移，并进入状态 97
+    RETURN       偏移，并进入状态 98
+    PUTINT       偏移，并进入状态 99
+    ';'          偏移，并进入状态 100
+    '{'          偏移，并进入状态 68
+    '}'          偏移，并进入状态 101
+    '('          偏移，并进入状态 102
+    '+'          偏移，并进入状态 42
+    '-'          偏移，并进入状态 43
+    '!'          偏移，并进入状态 44
+
+    Decl        转到状态 103
+    ConstDecl   转到状态 104
+    BType       转到状态 105
+    VarDecl     转到状态 106
+    Block_A     转到状态 107
+    Block       转到状态 108
+    BlockItem   转到状态 109
+    Stmt        转到状态 110
+    Exp         转到状态 111
+    LVal        转到状态 112
+    PrimaryExp  转到状态 113
+    Number      转到状态 114
+    UnaryExp    转到状态 115
+    UnaryOp     转到状态 116
+    MulExp      转到状态 117
+    AddExp      转到状态 118
+
+
+状态 69
+
+   57 FuncDef: VOID IDENTIFIER '(' ')' Block .
+
+    $default  使用规则 57 以归约 (FuncDef)
+
+
+状态 70
+
+   69 FuncFParam: BType IDENTIFIER .
+   70           | BType IDENTIFIER . FuncFParam_A
+
+    '['  偏移，并进入状态 119
+
+    $default  使用规则 69 以归约 (FuncFParam)
+
+    FuncFParam_A  转到状态 120
+
+
+状态 71
+
+   58 FuncDef: VOID IDENTIFIER '(' FuncFParams ')' . Block
+
+    '{'  偏移，并进入状态 68
+
+    Block  转到状态 121
+
+
+状态 72
+
+   61 FuncFParams_A: ',' . FuncFParam
+   62              | ',' . FuncFParam FuncFParams_A
+
+    INT  偏移，并进入状态 2
+
+    BType       转到状态 35
+    FuncFParam  转到状态 122
+
+
+状态 73
+
+   64 FuncFParams: FuncFParam FuncFParams_A .
+
+    $default  使用规则 64 以归约 (FuncFParams)
+
+
+状态 74
+
+  141 ConstPrimaryExp: '(' ConstExp . ')'
+
+    ')'  偏移，并进入状态 123
+
+
+状态 75
+
+  140 ConstUnaryExp: UnaryOp ConstUnaryExp .
+
+    $default  使用规则 140 以归约 (ConstUnaryExp)
+
+
+状态 76
+
+   35 VarDef_A_G: '[' ConstExp ']' .
+   36           | '[' ConstExp ']' . VarDef_A_G
+
+    '['  偏移，并进入状态 21
+
+    $default  使用规则 35 以归约 (VarDef_A_G)
+
+    VarDef_A_G  转到状态 124
+
+
+状态 77
+
+  133 ConstAddExp: ConstAddExp '+' . ConstMulExp
+
+    DECIMAL      偏移，并进入状态 38
+    OCTAL        偏移，并进入状态 39
+    HEXADECIMAL  偏移，并进入状态 40
+    '('          偏移，并进入状态 41
+    '+'          偏移，并进入状态 42
+    '-'          偏移，并进入状态 43
+    '!'          偏移，并进入状态 44
+
+    Number           转到状态 45
+    UnaryOp          转到状态 46
+    ConstMulExp      转到状态 125
+    ConstUnaryExp    转到状态 50
+    ConstPrimaryExp  转到状态 51
+
+
+状态 78
+
+  134 ConstAddExp: ConstAddExp '-' . ConstMulExp
+
+    DECIMAL      偏移，并进入状态 38
+    OCTAL        偏移，并进入状态 39
+    HEXADECIMAL  偏移，并进入状态 40
+    '('          偏移，并进入状态 41
+    '+'          偏移，并进入状态 42
+    '-'          偏移，并进入状态 43
+    '!'          偏移，并进入状态 44
+
+    Number           转到状态 45
+    UnaryOp          转到状态 46
+    ConstMulExp      转到状态 126
+    ConstUnaryExp    转到状态 50
+    ConstPrimaryExp  转到状态 51
+
+
+状态 79
+
+  136 ConstMulExp: ConstMulExp '*' . ConstUnaryExp
+
+    DECIMAL      偏移，并进入状态 38
+    OCTAL        偏移，并进入状态 39
+    HEXADECIMAL  偏移，并进入状态 40
+    '('          偏移，并进入状态 41
+    '+'          偏移，并进入状态 42
+    '-'          偏移，并进入状态 43
+    '!'          偏移，并进入状态 44
+
+    Number           转到状态 45
+    UnaryOp          转到状态 46
+    ConstUnaryExp    转到状态 127
+    ConstPrimaryExp  转到状态 51
+
+
+状态 80
+
+  137 ConstMulExp: ConstMulExp '/' . ConstUnaryExp
+
+    DECIMAL      偏移，并进入状态 38
+    OCTAL        偏移，并进入状态 39
+    HEXADECIMAL  偏移，并进入状态 40
+    '('          偏移，并进入状态 41
+    '+'          偏移，并进入状态 42
+    '-'          偏移，并进入状态 43
+    '!'          偏移，并进入状态 44
+
+    Number           转到状态 45
+    UnaryOp          转到状态 46
+    ConstUnaryExp    转到状态 128
+    ConstPrimaryExp  转到状态 51
+
+
+状态 81
+
+  138 ConstMulExp: ConstMulExp '%' . ConstUnaryExp
+
+    DECIMAL      偏移，并进入状态 38
+    OCTAL        偏移，并进入状态 39
+    HEXADECIMAL  偏移，并进入状态 40
+    '('          偏移，并进入状态 41
+    '+'          偏移，并进入状态 42
+    '-'          偏移，并进入状态 43
+    '!'          偏移，并进入状态 44
+
+    Number           转到状态 45
+    UnaryOp          转到状态 46
+    ConstUnaryExp    转到状态 129
+    ConstPrimaryExp  转到状态 51
+
+
+状态 82
+
+   51 InitVal_G: '{' '}' .
+
+    $default  使用规则 51 以归约 (InitVal_G)
+
+
+状态 83
+
+   50 InitVal_G: '{' InitVal_G . '}'
+   52          | '{' InitVal_G . InitVal_A_G '}'
+
+    ','  偏移，并进入状态 130
+    '}'  偏移，并进入状态 131
+
+    InitVal_A_G  转到状态 132
+
+
+状态 84
+
+   59 FuncDef: BType IDENTIFIER '(' ')' Block .
+
+    $default  使用规则 59 以归约 (FuncDef)
+
+
+状态 85
+
+   60 FuncDef: BType IDENTIFIER '(' FuncFParams ')' . Block
+
+    '{'  偏移，并进入状态 68
+
+    Block  转到状态 133
+
+
+状态 86
+
+   40 VarDef_G: IDENTIFIER VarDef_A_G '=' InitVal_G .
+
+    $default  使用规则 40 以归约 (VarDef_G)
+
+
+状态 87
+
+   26 VarDecl_A_G: ',' VarDef_G VarDecl_A_G .
+
+    $default  使用规则 26 以归约 (VarDecl_A_G)
+
+
+状态 88
+
+   15 ConstDef_A: '[' ConstExp ']' .
+   16           | '[' ConstExp ']' . ConstDef_A
+
+    '['  偏移，并进入状态 28
+
+    $default  使用规则 15 以归约 (ConstDef_A)
+
+    ConstDef_A  转到状态 134
+
+
+状态 89
+
+   23 ConstInitVal: '{' '}' .
+
+    $default  使用规则 23 以归约 (ConstInitVal)
+
+
+状态 90
+
+   22 ConstInitVal: '{' ConstInitVal . '}'
+   24             | '{' ConstInitVal . ConstInitVal_A '}'
+
+    ','  偏移，并进入状态 135
+    '}'  偏移，并进入状态 136
+
+    ConstInitVal_A  转到状态 137
+
+
+状态 91
+
+   18 ConstDef: IDENTIFIER ConstDef_A '=' ConstInitVal .
+
+    $default  使用规则 18 以归约 (ConstDef)
+
+
+状态 92
+
+   11 ConstDecl_A: ',' ConstDef ConstDecl_A .
+
+    $default  使用规则 11 以归约 (ConstDecl_A)
+
+
+状态 93
+
+   93 LVal: IDENTIFIER .
+   94     | IDENTIFIER . LVal_A
+  102 UnaryExp: IDENTIFIER . '(' ')'
+  103         | IDENTIFIER . '(' FuncRParams ')'
+
+    '['  偏移，并进入状态 138
+    '('  偏移，并进入状态 139
+
+    $default  使用规则 93 以归约 (LVal)
+
+    LVal_A  转到状态 140
+
+
+状态 94
+
+   81 Stmt: IF . '(' Cond ')' Stmt
+   82     | IF . '(' Cond ')' Stmt ELSE Stmt
+
+    '('  偏移，并进入状态 141
+
+
+状态 95
+
+   83 Stmt: WHILE . '(' Cond ')' Stmt
+
+    '('  偏移，并进入状态 142
+
+
+状态 96
+
+   85 Stmt: CONTINUE . ';'
+
+    ';'  偏移，并进入状态 143
+
+
+状态 97
+
+   84 Stmt: BREAK . ';'
+
+    ';'  偏移，并进入状态 144
+
+
+状态 98
+
+   86 Stmt: RETURN . ';'
+   87     | RETURN . Exp ';'
+
+    DECIMAL      偏移，并进入状态 38
+    OCTAL        偏移，并进入状态 39
+    HEXADECIMAL  偏移，并进入状态 40
+    IDENTIFIER   偏移，并进入状态 93
+    ';'          偏移，并进入状态 145
+    '('          偏移，并进入状态 102
+    '+'          偏移，并进入状态 42
+    '-'          偏移，并进入状态 43
+    '!'          偏移，并进入状态 44
+
+    Exp         转到状态 146
+    LVal        转到状态 147
+    PrimaryExp  转到状态 113
+    Number      转到状态 114
+    UnaryExp    转到状态 115
+    UnaryOp     转到状态 116
+    MulExp      转到状态 117
+    AddExp      转到状态 118
+
+
+状态 99
+
+   88 Stmt: PUTINT . '(' ConstExp ')' ';'
+
+    '('  偏移，并进入状态 148
+
+
+状态 100
+
+   78 Stmt: ';' .
+
+    $default  使用规则 78 以归约 (Stmt)
+
+
+状态 101
+
+   73 Block: '{' '}' .
+
+    $default  使用规则 73 以归约 (Block)
+
+
+状态 102
+
+   95 PrimaryExp: '(' . Exp ')'
+
+    DECIMAL      偏移，并进入状态 38
+    OCTAL        偏移，并进入状态 39
+    HEXADECIMAL  偏移，并进入状态 40
+    IDENTIFIER   偏移，并进入状态 93
+    '('          偏移，并进入状态 102
+    '+'          偏移，并进入状态 42
+    '-'          偏移，并进入状态 43
+    '!'          偏移，并进入状态 44
+
+    Exp         转到状态 149
+    LVal        转到状态 147
+    PrimaryExp  转到状态 113
+    Number      转到状态 114
+    UnaryExp    转到状态 115
+    UnaryOp     转到状态 116
+    MulExp      转到状态 117
+    AddExp      转到状态 118
+
+
+状态 103
+
+   75 BlockItem: Decl .
+
+    $default  使用规则 75 以归约 (BlockItem)
+
+
+状态 104
+
+    8 Decl: ConstDecl .
+
+    $default  使用规则 8 以归约 (Decl)
+
+
+状态 105
+
+   31 VarDecl: BType . VarDef ';'
+   32        | BType . VarDef VarDecl_A ';'
+
+    IDENTIFIER  偏移，并进入状态 150
+
+    VarDef  转到状态 151
+
+
+状态 106
+
+    9 Decl: VarDecl .
+
+    $default  使用规则 9 以归约 (Decl)
+
+
+状态 107
+
+   74 Block: '{' Block_A . '}'
+
+    '}'  偏移，并进入状态 152
+
+
+状态 108
+
+   80 Stmt: Block .
+
+    $default  使用规则 80 以归约 (Stmt)
+
+
+状态 109
+
+   71 Block_A: BlockItem .
+   72        | BlockItem . Block_A
+
+    CONST        偏移，并进入状态 1
+    DECIMAL      偏移，并进入状态 38
+    OCTAL        偏移，并进入状态 39
+    HEXADECIMAL  偏移，并进入状态 40
+    IDENTIFIER   偏移，并进入状态 93
+    INT          偏移，并进入状态 2
+    IF           偏移，并进入状态 94
+    WHILE        偏移，并进入状态 95
+    CONTINUE     偏移，并进入状态 96
+    BREAK        偏移，并进入状态 97
+    RETURN       偏移，并进入状态 98
+    PUTINT       偏移，并进入状态 99
+    ';'          偏移，并进入状态 100
+    '{'          偏移，并进入状态 68
+    '('          偏移，并进入状态 102
+    '+'          偏移，并进入状态 42
+    '-'          偏移，并进入状态 43
+    '!'          偏移，并进入状态 44
+
+    $default  使用规则 71 以归约 (Block_A)
+
+    Decl        转到状态 103
+    ConstDecl   转到状态 104
+    BType       转到状态 105
+    VarDecl     转到状态 106
+    Block_A     转到状态 153
+    Block       转到状态 108
+    BlockItem   转到状态 109
+    Stmt        转到状态 110
+    Exp         转到状态 111
+    LVal        转到状态 112
+    PrimaryExp  转到状态 113
+    Number      转到状态 114
+    UnaryExp    转到状态 115
+    UnaryOp     转到状态 116
+    MulExp      转到状态 117
+    AddExp      转到状态 118
+
+
+状态 110
+
+   76 BlockItem: Stmt .
+
+    $default  使用规则 76 以归约 (BlockItem)
+
+
+状态 111
+
+   79 Stmt: Exp . ';'
+
+    ';'  偏移，并进入状态 154
+
+
+状态 112
+
+   77 Stmt: LVal . '=' Exp ';'
+   96 PrimaryExp: LVal .
+
+    '='  偏移，并进入状态 155
+
+    $default  使用规则 96 以归约 (PrimaryExp)
+
+
+状态 113
+
+  101 UnaryExp: PrimaryExp .
+
+    $default  使用规则 101 以归约 (UnaryExp)
+
+
+状态 114
+
+   97 PrimaryExp: Number .
+
+    $default  使用规则 97 以归约 (PrimaryExp)
+
+
+状态 115
+
+  112 MulExp: UnaryExp .
+
+    $default  使用规则 112 以归约 (MulExp)
+
+
+状态 116
+
+  104 UnaryExp: UnaryOp . UnaryExp
+
+    DECIMAL      偏移，并进入状态 38
+    OCTAL        偏移，并进入状态 39
+    HEXADECIMAL  偏移，并进入状态 40
+    IDENTIFIER   偏移，并进入状态 93
+    '('          偏移，并进入状态 102
+    '+'          偏移，并进入状态 42
+    '-'          偏移，并进入状态 43
+    '!'          偏移，并进入状态 44
+
+    LVal        转到状态 147
+    PrimaryExp  转到状态 113
+    Number      转到状态 114
+    UnaryExp    转到状态 156
+    UnaryOp     转到状态 116
+
+
+状态 117
+
+  113 MulExp: MulExp . '*' UnaryExp
+  114       | MulExp . '/' UnaryExp
+  115       | MulExp . '%' UnaryExp
+  116 AddExp: MulExp .
+
+    '*'  偏移，并进入状态 157
+    '/'  偏移，并进入状态 158
+    '%'  偏移，并进入状态 159
+
+    $default  使用规则 116 以归约 (AddExp)
+
+
+状态 118
+
+   89 Exp: AddExp .
+  117 AddExp: AddExp . '+' MulExp
+  118       | AddExp . '-' MulExp
+
+    '+'  偏移，并进入状态 160
+    '-'  偏移，并进入状态 161
+
+    $default  使用规则 89 以归约 (Exp)
+
+
+状态 119
+
+   65 FuncFParam_A: '[' . ']'
+   66             | '[' . Exp ']'
+   67             | '[' . ']' FuncFParam_A
+   68             | '[' . Exp ']' FuncFParam_A
+
+    DECIMAL      偏移，并进入状态 38
+    OCTAL        偏移，并进入状态 39
+    HEXADECIMAL  偏移，并进入状态 40
+    IDENTIFIER   偏移，并进入状态 93
+    ']'          偏移，并进入状态 162
+    '('          偏移，并进入状态 102
+    '+'          偏移，并进入状态 42
+    '-'          偏移，并进入状态 43
+    '!'          偏移，并进入状态 44
+
+    Exp         转到状态 163
+    LVal        转到状态 147
+    PrimaryExp  转到状态 113
+    Number      转到状态 114
+    UnaryExp    转到状态 115
+    UnaryOp     转到状态 116
+    MulExp      转到状态 117
+    AddExp      转到状态 118
+
+
+状态 120
+
+   70 FuncFParam: BType IDENTIFIER FuncFParam_A .
+
+    $default  使用规则 70 以归约 (FuncFParam)
+
+
+状态 121
+
+   58 FuncDef: VOID IDENTIFIER '(' FuncFParams ')' Block .
+
+    $default  使用规则 58 以归约 (FuncDef)
+
+
+状态 122
+
+   61 FuncFParams_A: ',' FuncFParam .
+   62              | ',' FuncFParam . FuncFParams_A
+
+    ','  偏移，并进入状态 72
+
+    $default  使用规则 61 以归约 (FuncFParams_A)
+
+    FuncFParams_A  转到状态 164
+
+
+状态 123
+
+  141 ConstPrimaryExp: '(' ConstExp ')' .
+
+    $default  使用规则 141 以归约 (ConstPrimaryExp)
+
+
+状态 124
+
+   36 VarDef_A_G: '[' ConstExp ']' VarDef_A_G .
+
+    $default  使用规则 36 以归约 (VarDef_A_G)
+
+
+状态 125
+
+  133 ConstAddExp: ConstAddExp '+' ConstMulExp .
+  136 ConstMulExp: ConstMulExp . '*' ConstUnaryExp
+  137            | ConstMulExp . '/' ConstUnaryExp
+  138            | ConstMulExp . '%' ConstUnaryExp
+
+    '*'  偏移，并进入状态 79
+    '/'  偏移，并进入状态 80
+    '%'  偏移，并进入状态 81
+
+    $default  使用规则 133 以归约 (ConstAddExp)
+
+
+状态 126
+
+  134 ConstAddExp: ConstAddExp '-' ConstMulExp .
+  136 ConstMulExp: ConstMulExp . '*' ConstUnaryExp
+  137            | ConstMulExp . '/' ConstUnaryExp
+  138            | ConstMulExp . '%' ConstUnaryExp
+
+    '*'  偏移，并进入状态 79
+    '/'  偏移，并进入状态 80
+    '%'  偏移，并进入状态 81
+
+    $default  使用规则 134 以归约 (ConstAddExp)
+
+
+状态 127
+
+  136 ConstMulExp: ConstMulExp '*' ConstUnaryExp .
+
+    $default  使用规则 136 以归约 (ConstMulExp)
+
+
+状态 128
+
+  137 ConstMulExp: ConstMulExp '/' ConstUnaryExp .
+
+    $default  使用规则 137 以归约 (ConstMulExp)
+
+
+状态 129
+
+  138 ConstMulExp: ConstMulExp '%' ConstUnaryExp .
+
+    $default  使用规则 138 以归约 (ConstMulExp)
+
+
+状态 130
+
+   45 InitVal_A_G: ',' . InitVal_G
+   46            | ',' . InitVal_G InitVal_A_G
+
+    DECIMAL      偏移，并进入状态 38
+    OCTAL        偏移，并进入状态 39
+    HEXADECIMAL  偏移，并进入状态 40
+    '{'          偏移，并进入状态 52
+    '('          偏移，并进入状态 41
+    '+'          偏移，并进入状态 42
+    '-'          偏移，并进入状态 43
+    '!'          偏移，并进入状态 44
+
+    InitVal_G        转到状态 165
+    Number           转到状态 45
+    UnaryOp          转到状态 46
+    ConstExp         转到状态 54
+    ConstAddExp      转到状态 48
+    ConstMulExp      转到状态 49
+    ConstUnaryExp    转到状态 50
+    ConstPrimaryExp  转到状态 51
+
+
+状态 131
+
+   50 InitVal_G: '{' InitVal_G '}' .
+
+    $default  使用规则 50 以归约 (InitVal_G)
+
+
+状态 132
+
+   52 InitVal_G: '{' InitVal_G InitVal_A_G . '}'
+
+    '}'  偏移，并进入状态 166
+
+
+状态 133
+
+   60 FuncDef: BType IDENTIFIER '(' FuncFParams ')' Block .
+
+    $default  使用规则 60 以归约 (FuncDef)
+
+
+状态 134
+
+   16 ConstDef_A: '[' ConstExp ']' ConstDef_A .
+
+    $default  使用规则 16 以归约 (ConstDef_A)
+
+
+状态 135
+
+   19 ConstInitVal_A: ',' . ConstInitVal
+   20               | ',' . ConstInitVal ConstInitVal_A
+
+    DECIMAL      偏移，并进入状态 38
+    OCTAL        偏移，并进入状态 39
+    HEXADECIMAL  偏移，并进入状态 40
+    '{'          偏移，并进入状态 62
+    '('          偏移，并进入状态 41
+    '+'          偏移，并进入状态 42
+    '-'          偏移，并进入状态 43
+    '!'          偏移，并进入状态 44
+
+    ConstInitVal     转到状态 167
+    Number           转到状态 45
+    UnaryOp          转到状态 46
+    ConstExp         转到状态 64
+    ConstAddExp      转到状态 48
+    ConstMulExp      转到状态 49
+    ConstUnaryExp    转到状态 50
+    ConstPrimaryExp  转到状态 51
+
+
+状态 136
+
+   22 ConstInitVal: '{' ConstInitVal '}' .
+
+    $default  使用规则 22 以归约 (ConstInitVal)
+
+
+状态 137
+
+   24 ConstInitVal: '{' ConstInitVal ConstInitVal_A . '}'
+
+    '}'  偏移，并进入状态 168
+
+
+状态 138
+
+   91 LVal_A: '[' . Exp ']'
+   92       | '[' . Exp ']' LVal_A
+
+    DECIMAL      偏移，并进入状态 38
+    OCTAL        偏移，并进入状态 39
+    HEXADECIMAL  偏移，并进入状态 40
+    IDENTIFIER   偏移，并进入状态 93
+    '('          偏移，并进入状态 102
+    '+'          偏移，并进入状态 42
+    '-'          偏移，并进入状态 43
+    '!'          偏移，并进入状态 44
+
+    Exp         转到状态 169
+    LVal        转到状态 147
+    PrimaryExp  转到状态 113
+    Number      转到状态 114
+    UnaryExp    转到状态 115
+    UnaryOp     转到状态 116
+    MulExp      转到状态 117
+    AddExp      转到状态 118
+
+
+状态 139
+
+  102 UnaryExp: IDENTIFIER '(' . ')'
+  103         | IDENTIFIER '(' . FuncRParams ')'
+
+    DECIMAL      偏移，并进入状态 38
+    OCTAL        偏移，并进入状态 39
+    HEXADECIMAL  偏移，并进入状态 40
+    IDENTIFIER   偏移，并进入状态 93
+    '('          偏移，并进入状态 102
+    ')'          偏移，并进入状态 170
+    '+'          偏移，并进入状态 42
+    '-'          偏移，并进入状态 43
+    '!'          偏移，并进入状态 44
+
+    Exp          转到状态 171
+    LVal         转到状态 147
+    PrimaryExp   转到状态 113
+    Number       转到状态 114
+    UnaryExp     转到状态 115
+    UnaryOp      转到状态 116
+    FuncRParams  转到状态 172
+    MulExp       转到状态 117
+    AddExp       转到状态 118
+
+
+状态 140
+
+   94 LVal: IDENTIFIER LVal_A .
+
+    $default  使用规则 94 以归约 (LVal)
+
+
+状态 141
+
+   81 Stmt: IF '(' . Cond ')' Stmt
+   82     | IF '(' . Cond ')' Stmt ELSE Stmt
+
+    DECIMAL      偏移，并进入状态 38
+    OCTAL        偏移，并进入状态 39
+    HEXADECIMAL  偏移，并进入状态 40
+    IDENTIFIER   偏移，并进入状态 93
+    '('          偏移，并进入状态 102
+    '+'          偏移，并进入状态 42
+    '-'          偏移，并进入状态 43
+    '!'          偏移，并进入状态 44
+
+    Cond        转到状态 173
+    LVal        转到状态 147
+    PrimaryExp  转到状态 113
+    Number      转到状态 114
+    UnaryExp    转到状态 115
+    UnaryOp     转到状态 116
+    MulExp      转到状态 117
+    AddExp      转到状态 174
+    RelExp      转到状态 175
+    EqExp       转到状态 176
+    LAndExp     转到状态 177
+    LOrExp      转到状态 178
+
+
+状态 142
+
+   83 Stmt: WHILE '(' . Cond ')' Stmt
+
+    DECIMAL      偏移，并进入状态 38
+    OCTAL        偏移，并进入状态 39
+    HEXADECIMAL  偏移，并进入状态 40
+    IDENTIFIER   偏移，并进入状态 93
+    '('          偏移，并进入状态 102
+    '+'          偏移，并进入状态 42
+    '-'          偏移，并进入状态 43
+    '!'          偏移，并进入状态 44
+
+    Cond        转到状态 179
+    LVal        转到状态 147
+    PrimaryExp  转到状态 113
+    Number      转到状态 114
+    UnaryExp    转到状态 115
+    UnaryOp     转到状态 116
+    MulExp      转到状态 117
+    AddExp      转到状态 174
+    RelExp      转到状态 175
+    EqExp       转到状态 176
+    LAndExp     转到状态 177
+    LOrExp      转到状态 178
+
+
+状态 143
+
+   85 Stmt: CONTINUE ';' .
+
+    $default  使用规则 85 以归约 (Stmt)
+
+
+状态 144
+
+   84 Stmt: BREAK ';' .
+
+    $default  使用规则 84 以归约 (Stmt)
+
+
+状态 145
+
+   86 Stmt: RETURN ';' .
+
+    $default  使用规则 86 以归约 (Stmt)
+
+
+状态 146
+
+   87 Stmt: RETURN Exp . ';'
+
+    ';'  偏移，并进入状态 180
+
+
+状态 147
+
+   96 PrimaryExp: LVal .
+
+    $default  使用规则 96 以归约 (PrimaryExp)
+
+
+状态 148
+
+   88 Stmt: PUTINT '(' . ConstExp ')' ';'
+
+    DECIMAL      偏移，并进入状态 38
+    OCTAL        偏移，并进入状态 39
+    HEXADECIMAL  偏移，并进入状态 40
+    '('          偏移，并进入状态 41
+    '+'          偏移，并进入状态 42
+    '-'          偏移，并进入状态 43
+    '!'          偏移，并进入状态 44
+
+    Number           转到状态 45
+    UnaryOp          转到状态 46
+    ConstExp         转到状态 181
+    ConstAddExp      转到状态 48
+    ConstMulExp      转到状态 49
+    ConstUnaryExp    转到状态 50
+    ConstPrimaryExp  转到状态 51
+
+
+状态 149
+
+   95 PrimaryExp: '(' Exp . ')'
+
+    ')'  偏移，并进入状态 182
+
+
+状态 150
+
+   41 VarDef: IDENTIFIER .
+   42       | IDENTIFIER . VarDef_A
+   43       | IDENTIFIER . '=' InitVal
+   44       | IDENTIFIER . VarDef_A '=' InitVal
+
+    '['  偏移，并进入状态 183
+    '='  偏移，并进入状态 184
+
+    $default  使用规则 41 以归约 (VarDef)
+
+    VarDef_A  转到状态 185
+
+
+状态 151
+
+   31 VarDecl: BType VarDef . ';'
+   32        | BType VarDef . VarDecl_A ';'
+
+    ','  偏移，并进入状态 186
+    ';'  偏移，并进入状态 187
+
+    VarDecl_A  转到状态 188
+
+
+状态 152
+
+   74 Block: '{' Block_A '}' .
+
+    $default  使用规则 74 以归约 (Block)
+
+
+状态 153
+
+   72 Block_A: BlockItem Block_A .
+
+    $default  使用规则 72 以归约 (Block_A)
+
+
+状态 154
+
+   79 Stmt: Exp ';' .
+
+    $default  使用规则 79 以归约 (Stmt)
+
+
+状态 155
+
+   77 Stmt: LVal '=' . Exp ';'
+
+    DECIMAL      偏移，并进入状态 38
+    OCTAL        偏移，并进入状态 39
+    HEXADECIMAL  偏移，并进入状态 40
+    IDENTIFIER   偏移，并进入状态 93
+    '('          偏移，并进入状态 102
+    '+'          偏移，并进入状态 42
+    '-'          偏移，并进入状态 43
+    '!'          偏移，并进入状态 44
+
+    Exp         转到状态 189
+    LVal        转到状态 147
+    PrimaryExp  转到状态 113
+    Number      转到状态 114
+    UnaryExp    转到状态 115
+    UnaryOp     转到状态 116
+    MulExp      转到状态 117
+    AddExp      转到状态 118
+
+
+状态 156
+
+  104 UnaryExp: UnaryOp UnaryExp .
+
+    $default  使用规则 104 以归约 (UnaryExp)
+
+
+状态 157
+
+  113 MulExp: MulExp '*' . UnaryExp
+
+    DECIMAL      偏移，并进入状态 38
+    OCTAL        偏移，并进入状态 39
+    HEXADECIMAL  偏移，并进入状态 40
+    IDENTIFIER   偏移，并进入状态 93
+    '('          偏移，并进入状态 102
+    '+'          偏移，并进入状态 42
+    '-'          偏移，并进入状态 43
+    '!'          偏移，并进入状态 44
+
+    LVal        转到状态 147
+    PrimaryExp  转到状态 113
+    Number      转到状态 114
+    UnaryExp    转到状态 190
+    UnaryOp     转到状态 116
+
+
+状态 158
+
+  114 MulExp: MulExp '/' . UnaryExp
+
+    DECIMAL      偏移，并进入状态 38
+    OCTAL        偏移，并进入状态 39
+    HEXADECIMAL  偏移，并进入状态 40
+    IDENTIFIER   偏移，并进入状态 93
+    '('          偏移，并进入状态 102
+    '+'          偏移，并进入状态 42
+    '-'          偏移，并进入状态 43
+    '!'          偏移，并进入状态 44
+
+    LVal        转到状态 147
+    PrimaryExp  转到状态 113
+    Number      转到状态 114
+    UnaryExp    转到状态 191
+    UnaryOp     转到状态 116
+
+
+状态 159
+
+  115 MulExp: MulExp '%' . UnaryExp
+
+    DECIMAL      偏移，并进入状态 38
+    OCTAL        偏移，并进入状态 39
+    HEXADECIMAL  偏移，并进入状态 40
+    IDENTIFIER   偏移，并进入状态 93
+    '('          偏移，并进入状态 102
+    '+'          偏移，并进入状态 42
+    '-'          偏移，并进入状态 43
+    '!'          偏移，并进入状态 44
+
+    LVal        转到状态 147
+    PrimaryExp  转到状态 113
+    Number      转到状态 114
+    UnaryExp    转到状态 192
+    UnaryOp     转到状态 116
+
+
+状态 160
+
+  117 AddExp: AddExp '+' . MulExp
+
+    DECIMAL      偏移，并进入状态 38
+    OCTAL        偏移，并进入状态 39
+    HEXADECIMAL  偏移，并进入状态 40
+    IDENTIFIER   偏移，并进入状态 93
+    '('          偏移，并进入状态 102
+    '+'          偏移，并进入状态 42
+    '-'          偏移，并进入状态 43
+    '!'          偏移，并进入状态 44
+
+    LVal        转到状态 147
+    PrimaryExp  转到状态 113
+    Number      转到状态 114
+    UnaryExp    转到状态 115
+    UnaryOp     转到状态 116
+    MulExp      转到状态 193
+
+
+状态 161
+
+  118 AddExp: AddExp '-' . MulExp
+
+    DECIMAL      偏移，并进入状态 38
+    OCTAL        偏移，并进入状态 39
+    HEXADECIMAL  偏移，并进入状态 40
+    IDENTIFIER   偏移，并进入状态 93
+    '('          偏移，并进入状态 102
+    '+'          偏移，并进入状态 42
+    '-'          偏移，并进入状态 43
+    '!'          偏移，并进入状态 44
+
+    LVal        转到状态 147
+    PrimaryExp  转到状态 113
+    Number      转到状态 114
+    UnaryExp    转到状态 115
+    UnaryOp     转到状态 116
+    MulExp      转到状态 194
+
+
+状态 162
+
+   65 FuncFParam_A: '[' ']' .
+   67             | '[' ']' . FuncFParam_A
+
+    '['  偏移，并进入状态 119
+
+    $default  使用规则 65 以归约 (FuncFParam_A)
+
+    FuncFParam_A  转到状态 195
+
+
+状态 163
+
+   66 FuncFParam_A: '[' Exp . ']'
+   68             | '[' Exp . ']' FuncFParam_A
+
+    ']'  偏移，并进入状态 196
+
+
+状态 164
+
+   62 FuncFParams_A: ',' FuncFParam FuncFParams_A .
+
+    $default  使用规则 62 以归约 (FuncFParams_A)
+
+
+状态 165
+
+   45 InitVal_A_G: ',' InitVal_G .
+   46            | ',' InitVal_G . InitVal_A_G
+
+    ','  偏移，并进入状态 130
+
+    $default  使用规则 45 以归约 (InitVal_A_G)
+
+    InitVal_A_G  转到状态 197
+
+
+状态 166
+
+   52 InitVal_G: '{' InitVal_G InitVal_A_G '}' .
+
+    $default  使用规则 52 以归约 (InitVal_G)
+
+
+状态 167
+
+   19 ConstInitVal_A: ',' ConstInitVal .
+   20               | ',' ConstInitVal . ConstInitVal_A
+
+    ','  偏移，并进入状态 135
+
+    $default  使用规则 19 以归约 (ConstInitVal_A)
+
+    ConstInitVal_A  转到状态 198
+
+
+状态 168
+
+   24 ConstInitVal: '{' ConstInitVal ConstInitVal_A '}' .
+
+    $default  使用规则 24 以归约 (ConstInitVal)
+
+
+状态 169
+
+   91 LVal_A: '[' Exp . ']'
+   92       | '[' Exp . ']' LVal_A
+
+    ']'  偏移，并进入状态 199
+
+
+状态 170
+
+  102 UnaryExp: IDENTIFIER '(' ')' .
+
+    $default  使用规则 102 以归约 (UnaryExp)
+
+
+状态 171
+
+  110 FuncRParams: Exp .
+  111            | Exp . FuncRParams_A
+
+    ','  偏移，并进入状态 200
+
+    $default  使用规则 110 以归约 (FuncRParams)
+
+    FuncRParams_A  转到状态 201
+
+
+状态 172
+
+  103 UnaryExp: IDENTIFIER '(' FuncRParams . ')'
+
+    ')'  偏移，并进入状态 202
+
+
+状态 173
+
+   81 Stmt: IF '(' Cond . ')' Stmt
+   82     | IF '(' Cond . ')' Stmt ELSE Stmt
+
+    ')'  偏移，并进入状态 203
+
+
+状态 174
+
+  117 AddExp: AddExp . '+' MulExp
+  118       | AddExp . '-' MulExp
+  119 RelExp: AddExp .
+
+    '+'  偏移，并进入状态 160
+    '-'  偏移，并进入状态 161
+
+    $default  使用规则 119 以归约 (RelExp)
+
+
+状态 175
+
+  120 RelExp: RelExp . '<' AddExp
+  121       | RelExp . '>' AddExp
+  122       | RelExp . LE_OP AddExp
+  123       | RelExp . GE_OP AddExp
+  124 EqExp: RelExp .
+
+    LE_OP  偏移，并进入状态 204
+    GE_OP  偏移，并进入状态 205
+    '<'    偏移，并进入状态 206
+    '>'    偏移，并进入状态 207
+
+    $default  使用规则 124 以归约 (EqExp)
+
+
+状态 176
+
+  125 EqExp: EqExp . EQ_OP RelExp
+  126      | EqExp . NE_OP RelExp
+  127 LAndExp: EqExp .
+
+    EQ_OP  偏移，并进入状态 208
+    NE_OP  偏移，并进入状态 209
+
+    $default  使用规则 127 以归约 (LAndExp)
+
+
+状态 177
+
+  128 LAndExp: LAndExp . AND_OP EqExp
+  129 LOrExp: LAndExp .
+
+    AND_OP  偏移，并进入状态 210
+
+    $default  使用规则 129 以归约 (LOrExp)
+
+
+状态 178
+
+   90 Cond: LOrExp .
+  130 LOrExp: LOrExp . OR_OP LAndExp
+
+    OR_OP  偏移，并进入状态 211
+
+    $default  使用规则 90 以归约 (Cond)
+
+
+状态 179
+
+   83 Stmt: WHILE '(' Cond . ')' Stmt
+
+    ')'  偏移，并进入状态 212
+
+
+状态 180
+
+   87 Stmt: RETURN Exp ';' .
+
+    $default  使用规则 87 以归约 (Stmt)
+
+
+状态 181
+
+   88 Stmt: PUTINT '(' ConstExp . ')' ';'
+
+    ')'  偏移，并进入状态 213
+
+
+状态 182
+
+   95 PrimaryExp: '(' Exp ')' .
+
+    $default  使用规则 95 以归约 (PrimaryExp)
+
+
+状态 183
+
+   33 VarDef_A: '[' . ConstExp ']'
+   34         | '[' . ConstExp ']' VarDef_A
+
+    DECIMAL      偏移，并进入状态 38
+    OCTAL        偏移，并进入状态 39
+    HEXADECIMAL  偏移，并进入状态 40
+    '('          偏移，并进入状态 41
+    '+'          偏移，并进入状态 42
+    '-'          偏移，并进入状态 43
+    '!'          偏移，并进入状态 44
+
+    Number           转到状态 45
+    UnaryOp          转到状态 46
+    ConstExp         转到状态 214
+    ConstAddExp      转到状态 48
+    ConstMulExp      转到状态 49
+    ConstUnaryExp    转到状态 50
+    ConstPrimaryExp  转到状态 51
+
+
+状态 184
+
+   43 VarDef: IDENTIFIER '=' . InitVal
+
+    DECIMAL      偏移，并进入状态 38
+    OCTAL        偏移，并进入状态 39
+    HEXADECIMAL  偏移，并进入状态 40
+    IDENTIFIER   偏移，并进入状态 93
+    '{'          偏移，并进入状态 215
+    '('          偏移，并进入状态 102
+    '+'          偏移，并进入状态 42
+    '-'          偏移，并进入状态 43
+    '!'          偏移，并进入状态 44
+
+    InitVal     转到状态 216
+    Exp         转到状态 217
+    LVal        转到状态 147
+    PrimaryExp  转到状态 113
+    Number      转到状态 114
+    UnaryExp    转到状态 115
+    UnaryOp     转到状态 116
+    MulExp      转到状态 117
+    AddExp      转到状态 118
+
+
+状态 185
+
+   42 VarDef: IDENTIFIER VarDef_A .
+   44       | IDENTIFIER VarDef_A . '=' InitVal
+
+    '='  偏移，并进入状态 218
+
+    $default  使用规则 42 以归约 (VarDef)
+
+
+状态 186
+
+   27 VarDecl_A: ',' . VarDef
+   28          | ',' . VarDef VarDecl_A
+
+    IDENTIFIER  偏移，并进入状态 150
+
+    VarDef  转到状态 219
+
+
+状态 187
+
+   31 VarDecl: BType VarDef ';' .
+
+    $default  使用规则 31 以归约 (VarDecl)
+
+
+状态 188
+
+   32 VarDecl: BType VarDef VarDecl_A . ';'
+
+    ';'  偏移，并进入状态 220
+
+
+状态 189
+
+   77 Stmt: LVal '=' Exp . ';'
+
+    ';'  偏移，并进入状态 221
+
+
+状态 190
+
+  113 MulExp: MulExp '*' UnaryExp .
+
+    $default  使用规则 113 以归约 (MulExp)
+
+
+状态 191
+
+  114 MulExp: MulExp '/' UnaryExp .
+
+    $default  使用规则 114 以归约 (MulExp)
+
+
+状态 192
+
+  115 MulExp: MulExp '%' UnaryExp .
+
+    $default  使用规则 115 以归约 (MulExp)
+
+
+状态 193
+
+  113 MulExp: MulExp . '*' UnaryExp
+  114       | MulExp . '/' UnaryExp
+  115       | MulExp . '%' UnaryExp
+  117 AddExp: AddExp '+' MulExp .
+
+    '*'  偏移，并进入状态 157
+    '/'  偏移，并进入状态 158
+    '%'  偏移，并进入状态 159
+
+    $default  使用规则 117 以归约 (AddExp)
+
+
+状态 194
+
+  113 MulExp: MulExp . '*' UnaryExp
+  114       | MulExp . '/' UnaryExp
+  115       | MulExp . '%' UnaryExp
+  118 AddExp: AddExp '-' MulExp .
+
+    '*'  偏移，并进入状态 157
+    '/'  偏移，并进入状态 158
+    '%'  偏移，并进入状态 159
+
+    $default  使用规则 118 以归约 (AddExp)
+
+
+状态 195
+
+   67 FuncFParam_A: '[' ']' FuncFParam_A .
+
+    $default  使用规则 67 以归约 (FuncFParam_A)
+
+
+状态 196
+
+   66 FuncFParam_A: '[' Exp ']' .
+   68             | '[' Exp ']' . FuncFParam_A
+
+    '['  偏移，并进入状态 119
+
+    $default  使用规则 66 以归约 (FuncFParam_A)
+
+    FuncFParam_A  转到状态 222
+
+
+状态 197
+
+   46 InitVal_A_G: ',' InitVal_G InitVal_A_G .
+
+    $default  使用规则 46 以归约 (InitVal_A_G)
+
+
+状态 198
+
+   20 ConstInitVal_A: ',' ConstInitVal ConstInitVal_A .
+
+    $default  使用规则 20 以归约 (ConstInitVal_A)
+
+
+状态 199
+
+   91 LVal_A: '[' Exp ']' .
+   92       | '[' Exp ']' . LVal_A
+
+    '['  偏移，并进入状态 138
+
+    $default  使用规则 91 以归约 (LVal_A)
+
+    LVal_A  转到状态 223
+
+
+状态 200
+
+  108 FuncRParams_A: ',' . Exp
+  109              | ',' . Exp FuncRParams_A
+
+    DECIMAL      偏移，并进入状态 38
+    OCTAL        偏移，并进入状态 39
+    HEXADECIMAL  偏移，并进入状态 40
+    IDENTIFIER   偏移，并进入状态 93
+    '('          偏移，并进入状态 102
+    '+'          偏移，并进入状态 42
+    '-'          偏移，并进入状态 43
+    '!'          偏移，并进入状态 44
+
+    Exp         转到状态 224
+    LVal        转到状态 147
+    PrimaryExp  转到状态 113
+    Number      转到状态 114
+    UnaryExp    转到状态 115
+    UnaryOp     转到状态 116
+    MulExp      转到状态 117
+    AddExp      转到状态 118
+
+
+状态 201
+
+  111 FuncRParams: Exp FuncRParams_A .
+
+    $default  使用规则 111 以归约 (FuncRParams)
+
+
+状态 202
+
+  103 UnaryExp: IDENTIFIER '(' FuncRParams ')' .
+
+    $default  使用规则 103 以归约 (UnaryExp)
+
+
+状态 203
+
+   81 Stmt: IF '(' Cond ')' . Stmt
+   82     | IF '(' Cond ')' . Stmt ELSE Stmt
+
+    DECIMAL      偏移，并进入状态 38
+    OCTAL        偏移，并进入状态 39
+    HEXADECIMAL  偏移，并进入状态 40
+    IDENTIFIER   偏移，并进入状态 93
+    IF           偏移，并进入状态 94
+    WHILE        偏移，并进入状态 95
+    CONTINUE     偏移，并进入状态 96
+    BREAK        偏移，并进入状态 97
+    RETURN       偏移，并进入状态 98
+    PUTINT       偏移，并进入状态 99
+    ';'          偏移，并进入状态 100
+    '{'          偏移，并进入状态 68
+    '('          偏移，并进入状态 102
+    '+'          偏移，并进入状态 42
+    '-'          偏移，并进入状态 43
+    '!'          偏移，并进入状态 44
+
+    Block       转到状态 108
+    Stmt        转到状态 225
+    Exp         转到状态 111
+    LVal        转到状态 112
+    PrimaryExp  转到状态 113
+    Number      转到状态 114
+    UnaryExp    转到状态 115
+    UnaryOp     转到状态 116
+    MulExp      转到状态 117
+    AddExp      转到状态 118
+
+
+状态 204
+
+  122 RelExp: RelExp LE_OP . AddExp
+
+    DECIMAL      偏移，并进入状态 38
+    OCTAL        偏移，并进入状态 39
+    HEXADECIMAL  偏移，并进入状态 40
+    IDENTIFIER   偏移，并进入状态 93
+    '('          偏移，并进入状态 102
+    '+'          偏移，并进入状态 42
+    '-'          偏移，并进入状态 43
+    '!'          偏移，并进入状态 44
+
+    LVal        转到状态 147
+    PrimaryExp  转到状态 113
+    Number      转到状态 114
+    UnaryExp    转到状态 115
+    UnaryOp     转到状态 116
+    MulExp      转到状态 117
+    AddExp      转到状态 226
+
+
+状态 205
+
+  123 RelExp: RelExp GE_OP . AddExp
+
+    DECIMAL      偏移，并进入状态 38
+    OCTAL        偏移，并进入状态 39
+    HEXADECIMAL  偏移，并进入状态 40
+    IDENTIFIER   偏移，并进入状态 93
+    '('          偏移，并进入状态 102
+    '+'          偏移，并进入状态 42
+    '-'          偏移，并进入状态 43
+    '!'          偏移，并进入状态 44
+
+    LVal        转到状态 147
+    PrimaryExp  转到状态 113
+    Number      转到状态 114
+    UnaryExp    转到状态 115
+    UnaryOp     转到状态 116
+    MulExp      转到状态 117
+    AddExp      转到状态 227
+
+
+状态 206
+
+  120 RelExp: RelExp '<' . AddExp
+
+    DECIMAL      偏移，并进入状态 38
+    OCTAL        偏移，并进入状态 39
+    HEXADECIMAL  偏移，并进入状态 40
+    IDENTIFIER   偏移，并进入状态 93
+    '('          偏移，并进入状态 102
+    '+'          偏移，并进入状态 42
+    '-'          偏移，并进入状态 43
+    '!'          偏移，并进入状态 44
+
+    LVal        转到状态 147
+    PrimaryExp  转到状态 113
+    Number      转到状态 114
+    UnaryExp    转到状态 115
+    UnaryOp     转到状态 116
+    MulExp      转到状态 117
+    AddExp      转到状态 228
+
+
+状态 207
+
+  121 RelExp: RelExp '>' . AddExp
+
+    DECIMAL      偏移，并进入状态 38
+    OCTAL        偏移，并进入状态 39
+    HEXADECIMAL  偏移，并进入状态 40
+    IDENTIFIER   偏移，并进入状态 93
+    '('          偏移，并进入状态 102
+    '+'          偏移，并进入状态 42
+    '-'          偏移，并进入状态 43
+    '!'          偏移，并进入状态 44
+
+    LVal        转到状态 147
+    PrimaryExp  转到状态 113
+    Number      转到状态 114
+    UnaryExp    转到状态 115
+    UnaryOp     转到状态 116
+    MulExp      转到状态 117
+    AddExp      转到状态 229
+
+
+状态 208
+
+  125 EqExp: EqExp EQ_OP . RelExp
+
+    DECIMAL      偏移，并进入状态 38
+    OCTAL        偏移，并进入状态 39
+    HEXADECIMAL  偏移，并进入状态 40
+    IDENTIFIER   偏移，并进入状态 93
+    '('          偏移，并进入状态 102
+    '+'          偏移，并进入状态 42
+    '-'          偏移，并进入状态 43
+    '!'          偏移，并进入状态 44
+
+    LVal        转到状态 147
+    PrimaryExp  转到状态 113
+    Number      转到状态 114
+    UnaryExp    转到状态 115
+    UnaryOp     转到状态 116
+    MulExp      转到状态 117
+    AddExp      转到状态 174
+    RelExp      转到状态 230
+
+
+状态 209
+
+  126 EqExp: EqExp NE_OP . RelExp
+
+    DECIMAL      偏移，并进入状态 38
+    OCTAL        偏移，并进入状态 39
+    HEXADECIMAL  偏移，并进入状态 40
+    IDENTIFIER   偏移，并进入状态 93
+    '('          偏移，并进入状态 102
+    '+'          偏移，并进入状态 42
+    '-'          偏移，并进入状态 43
+    '!'          偏移，并进入状态 44
+
+    LVal        转到状态 147
+    PrimaryExp  转到状态 113
+    Number      转到状态 114
+    UnaryExp    转到状态 115
+    UnaryOp     转到状态 116
+    MulExp      转到状态 117
+    AddExp      转到状态 174
+    RelExp      转到状态 231
+
+
+状态 210
+
+  128 LAndExp: LAndExp AND_OP . EqExp
+
+    DECIMAL      偏移，并进入状态 38
+    OCTAL        偏移，并进入状态 39
+    HEXADECIMAL  偏移，并进入状态 40
+    IDENTIFIER   偏移，并进入状态 93
+    '('          偏移，并进入状态 102
+    '+'          偏移，并进入状态 42
+    '-'          偏移，并进入状态 43
+    '!'          偏移，并进入状态 44
+
+    LVal        转到状态 147
+    PrimaryExp  转到状态 113
+    Number      转到状态 114
+    UnaryExp    转到状态 115
+    UnaryOp     转到状态 116
+    MulExp      转到状态 117
+    AddExp      转到状态 174
+    RelExp      转到状态 175
+    EqExp       转到状态 232
+
+
+状态 211
+
+  130 LOrExp: LOrExp OR_OP . LAndExp
+
+    DECIMAL      偏移，并进入状态 38
+    OCTAL        偏移，并进入状态 39
+    HEXADECIMAL  偏移，并进入状态 40
+    IDENTIFIER   偏移，并进入状态 93
+    '('          偏移，并进入状态 102
+    '+'          偏移，并进入状态 42
+    '-'          偏移，并进入状态 43
+    '!'          偏移，并进入状态 44
+
+    LVal        转到状态 147
+    PrimaryExp  转到状态 113
+    Number      转到状态 114
+    UnaryExp    转到状态 115
+    UnaryOp     转到状态 116
+    MulExp      转到状态 117
+    AddExp      转到状态 174
+    RelExp      转到状态 175
+    EqExp       转到状态 176
+    LAndExp     转到状态 233
+
+
+状态 212
+
+   83 Stmt: WHILE '(' Cond ')' . Stmt
+
+    DECIMAL      偏移，并进入状态 38
+    OCTAL        偏移，并进入状态 39
+    HEXADECIMAL  偏移，并进入状态 40
+    IDENTIFIER   偏移，并进入状态 93
+    IF           偏移，并进入状态 94
+    WHILE        偏移，并进入状态 95
+    CONTINUE     偏移，并进入状态 96
+    BREAK        偏移，并进入状态 97
+    RETURN       偏移，并进入状态 98
+    PUTINT       偏移，并进入状态 99
+    ';'          偏移，并进入状态 100
+    '{'          偏移，并进入状态 68
+    '('          偏移，并进入状态 102
+    '+'          偏移，并进入状态 42
+    '-'          偏移，并进入状态 43
+    '!'          偏移，并进入状态 44
+
+    Block       转到状态 108
+    Stmt        转到状态 234
+    Exp         转到状态 111
+    LVal        转到状态 112
+    PrimaryExp  转到状态 113
+    Number      转到状态 114
+    UnaryExp    转到状态 115
+    UnaryOp     转到状态 116
+    MulExp      转到状态 117
+    AddExp      转到状态 118
+
+
+状态 213
+
+   88 Stmt: PUTINT '(' ConstExp ')' . ';'
+
+    ';'  偏移，并进入状态 235
+
+
+状态 214
+
+   33 VarDef_A: '[' ConstExp . ']'
+   34         | '[' ConstExp . ']' VarDef_A
+
+    ']'  偏移，并进入状态 236
+
+
+状态 215
+
+   54 InitVal: '{' . InitVal '}'
+   55        | '{' . '}'
+   56        | '{' . InitVal InitVal_A '}'
+
+    DECIMAL      偏移，并进入状态 38
+    OCTAL        偏移，并进入状态 39
+    HEXADECIMAL  偏移，并进入状态 40
+    IDENTIFIER   偏移，并进入状态 93
+    '{'          偏移，并进入状态 215
+    '}'          偏移，并进入状态 237
+    '('          偏移，并进入状态 102
+    '+'          偏移，并进入状态 42
+    '-'          偏移，并进入状态 43
+    '!'          偏移，并进入状态 44
+
+    InitVal     转到状态 238
+    Exp         转到状态 217
+    LVal        转到状态 147
+    PrimaryExp  转到状态 113
+    Number      转到状态 114
+    UnaryExp    转到状态 115
+    UnaryOp     转到状态 116
+    MulExp      转到状态 117
+    AddExp      转到状态 118
+
+
+状态 216
+
+   43 VarDef: IDENTIFIER '=' InitVal .
+
+    $default  使用规则 43 以归约 (VarDef)
+
+
+状态 217
+
+   53 InitVal: Exp .
+
+    $default  使用规则 53 以归约 (InitVal)
+
+
+状态 218
+
+   44 VarDef: IDENTIFIER VarDef_A '=' . InitVal
+
+    DECIMAL      偏移，并进入状态 38
+    OCTAL        偏移，并进入状态 39
+    HEXADECIMAL  偏移，并进入状态 40
+    IDENTIFIER   偏移，并进入状态 93
+    '{'          偏移，并进入状态 215
+    '('          偏移，并进入状态 102
+    '+'          偏移，并进入状态 42
+    '-'          偏移，并进入状态 43
+    '!'          偏移，并进入状态 44
+
+    InitVal     转到状态 239
+    Exp         转到状态 217
+    LVal        转到状态 147
+    PrimaryExp  转到状态 113
+    Number      转到状态 114
+    UnaryExp    转到状态 115
+    UnaryOp     转到状态 116
+    MulExp      转到状态 117
+    AddExp      转到状态 118
+
+
+状态 219
+
+   27 VarDecl_A: ',' VarDef .
+   28          | ',' VarDef . VarDecl_A
+
+    ','  偏移，并进入状态 186
+
+    $default  使用规则 27 以归约 (VarDecl_A)
+
+    VarDecl_A  转到状态 240
+
+
+状态 220
+
+   32 VarDecl: BType VarDef VarDecl_A ';' .
+
+    $default  使用规则 32 以归约 (VarDecl)
+
+
+状态 221
+
+   77 Stmt: LVal '=' Exp ';' .
+
+    $default  使用规则 77 以归约 (Stmt)
+
+
+状态 222
+
+   68 FuncFParam_A: '[' Exp ']' FuncFParam_A .
+
+    $default  使用规则 68 以归约 (FuncFParam_A)
+
+
+状态 223
+
+   92 LVal_A: '[' Exp ']' LVal_A .
+
+    $default  使用规则 92 以归约 (LVal_A)
+
+
+状态 224
+
+  108 FuncRParams_A: ',' Exp .
+  109              | ',' Exp . FuncRParams_A
+
+    ','  偏移，并进入状态 200
+
+    $default  使用规则 108 以归约 (FuncRParams_A)
+
+    FuncRParams_A  转到状态 241
+
+
+状态 225
+
+   81 Stmt: IF '(' Cond ')' Stmt .
+   82     | IF '(' Cond ')' Stmt . ELSE Stmt
+
+    ELSE  偏移，并进入状态 242
+
+    ELSE      [使用规则 81 以归约 (Stmt)]
+    $default  使用规则 81 以归约 (Stmt)
+
+
+状态 226
+
+  117 AddExp: AddExp . '+' MulExp
+  118       | AddExp . '-' MulExp
+  122 RelExp: RelExp LE_OP AddExp .
+
+    '+'  偏移，并进入状态 160
+    '-'  偏移，并进入状态 161
+
+    $default  使用规则 122 以归约 (RelExp)
+
+
+状态 227
+
+  117 AddExp: AddExp . '+' MulExp
+  118       | AddExp . '-' MulExp
+  123 RelExp: RelExp GE_OP AddExp .
+
+    '+'  偏移，并进入状态 160
+    '-'  偏移，并进入状态 161
+
+    $default  使用规则 123 以归约 (RelExp)
+
+
+状态 228
+
+  117 AddExp: AddExp . '+' MulExp
+  118       | AddExp . '-' MulExp
+  120 RelExp: RelExp '<' AddExp .
+
+    '+'  偏移，并进入状态 160
+    '-'  偏移，并进入状态 161
+
+    $default  使用规则 120 以归约 (RelExp)
+
+
+状态 229
+
+  117 AddExp: AddExp . '+' MulExp
+  118       | AddExp . '-' MulExp
+  121 RelExp: RelExp '>' AddExp .
+
+    '+'  偏移，并进入状态 160
+    '-'  偏移，并进入状态 161
+
+    $default  使用规则 121 以归约 (RelExp)
+
+
+状态 230
+
+  120 RelExp: RelExp . '<' AddExp
+  121       | RelExp . '>' AddExp
+  122       | RelExp . LE_OP AddExp
+  123       | RelExp . GE_OP AddExp
+  125 EqExp: EqExp EQ_OP RelExp .
+
+    LE_OP  偏移，并进入状态 204
+    GE_OP  偏移，并进入状态 205
+    '<'    偏移，并进入状态 206
+    '>'    偏移，并进入状态 207
+
+    $default  使用规则 125 以归约 (EqExp)
+
+
+状态 231
+
+  120 RelExp: RelExp . '<' AddExp
+  121       | RelExp . '>' AddExp
+  122       | RelExp . LE_OP AddExp
+  123       | RelExp . GE_OP AddExp
+  126 EqExp: EqExp NE_OP RelExp .
+
+    LE_OP  偏移，并进入状态 204
+    GE_OP  偏移，并进入状态 205
+    '<'    偏移，并进入状态 206
+    '>'    偏移，并进入状态 207
+
+    $default  使用规则 126 以归约 (EqExp)
+
+
+状态 232
+
+  125 EqExp: EqExp . EQ_OP RelExp
+  126      | EqExp . NE_OP RelExp
+  128 LAndExp: LAndExp AND_OP EqExp .
+
+    EQ_OP  偏移，并进入状态 208
+    NE_OP  偏移，并进入状态 209
+
+    $default  使用规则 128 以归约 (LAndExp)
+
+
+状态 233
+
+  128 LAndExp: LAndExp . AND_OP EqExp
+  130 LOrExp: LOrExp OR_OP LAndExp .
+
+    AND_OP  偏移，并进入状态 210
+
+    $default  使用规则 130 以归约 (LOrExp)
+
+
+状态 234
+
+   83 Stmt: WHILE '(' Cond ')' Stmt .
+
+    $default  使用规则 83 以归约 (Stmt)
+
+
+状态 235
+
+   88 Stmt: PUTINT '(' ConstExp ')' ';' .
+
+    $default  使用规则 88 以归约 (Stmt)
+
+
+状态 236
+
+   33 VarDef_A: '[' ConstExp ']' .
+   34         | '[' ConstExp ']' . VarDef_A
+
+    '['  偏移，并进入状态 183
+
+    $default  使用规则 33 以归约 (VarDef_A)
+
+    VarDef_A  转到状态 243
+
+
+状态 237
+
+   55 InitVal: '{' '}' .
+
+    $default  使用规则 55 以归约 (InitVal)
+
+
+状态 238
+
+   54 InitVal: '{' InitVal . '}'
+   56        | '{' InitVal . InitVal_A '}'
+
+    ','  偏移，并进入状态 244
+    '}'  偏移，并进入状态 245
+
+    InitVal_A  转到状态 246
+
+
+状态 239
+
+   44 VarDef: IDENTIFIER VarDef_A '=' InitVal .
+
+    $default  使用规则 44 以归约 (VarDef)
+
+
+状态 240
+
+   28 VarDecl_A: ',' VarDef VarDecl_A .
+
+    $default  使用规则 28 以归约 (VarDecl_A)
+
+
+状态 241
+
+  109 FuncRParams_A: ',' Exp FuncRParams_A .
+
+    $default  使用规则 109 以归约 (FuncRParams_A)
+
+
+状态 242
+
+   82 Stmt: IF '(' Cond ')' Stmt ELSE . Stmt
+
+    DECIMAL      偏移，并进入状态 38
+    OCTAL        偏移，并进入状态 39
+    HEXADECIMAL  偏移，并进入状态 40
+    IDENTIFIER   偏移，并进入状态 93
+    IF           偏移，并进入状态 94
+    WHILE        偏移，并进入状态 95
+    CONTINUE     偏移，并进入状态 96
+    BREAK        偏移，并进入状态 97
+    RETURN       偏移，并进入状态 98
+    PUTINT       偏移，并进入状态 99
+    ';'          偏移，并进入状态 100
+    '{'          偏移，并进入状态 68
+    '('          偏移，并进入状态 102
+    '+'          偏移，并进入状态 42
+    '-'          偏移，并进入状态 43
+    '!'          偏移，并进入状态 44
+
+    Block       转到状态 108
+    Stmt        转到状态 247
+    Exp         转到状态 111
+    LVal        转到状态 112
+    PrimaryExp  转到状态 113
+    Number      转到状态 114
+    UnaryExp    转到状态 115
+    UnaryOp     转到状态 116
+    MulExp      转到状态 117
+    AddExp      转到状态 118
+
+
+状态 243
+
+   34 VarDef_A: '[' ConstExp ']' VarDef_A .
+
+    $default  使用规则 34 以归约 (VarDef_A)
+
+
+状态 244
+
+   47 InitVal_A: ',' . InitVal
+   48          | ',' . InitVal InitVal_A
+
+    DECIMAL      偏移，并进入状态 38
+    OCTAL        偏移，并进入状态 39
+    HEXADECIMAL  偏移，并进入状态 40
+    IDENTIFIER   偏移，并进入状态 93
+    '{'          偏移，并进入状态 215
+    '('          偏移，并进入状态 102
+    '+'          偏移，并进入状态 42
+    '-'          偏移，并进入状态 43
+    '!'          偏移，并进入状态 44
+
+    InitVal     转到状态 248
+    Exp         转到状态 217
+    LVal        转到状态 147
+    PrimaryExp  转到状态 113
+    Number      转到状态 114
+    UnaryExp    转到状态 115
+    UnaryOp     转到状态 116
+    MulExp      转到状态 117
+    AddExp      转到状态 118
+
+
+状态 245
+
+   54 InitVal: '{' InitVal '}' .
+
+    $default  使用规则 54 以归约 (InitVal)
+
+
+状态 246
+
+   56 InitVal: '{' InitVal InitVal_A . '}'
+
+    '}'  偏移，并进入状态 249
+
+
+状态 247
+
+   82 Stmt: IF '(' Cond ')' Stmt ELSE Stmt .
+
+    $default  使用规则 82 以归约 (Stmt)
+
+
+状态 248
+
+   47 InitVal_A: ',' InitVal .
+   48          | ',' InitVal . InitVal_A
+
+    ','  偏移，并进入状态 244
+
+    $default  使用规则 47 以归约 (InitVal_A)
+
+    InitVal_A  转到状态 250
+
+
+状态 249
+
+   56 InitVal: '{' InitVal InitVal_A '}' .
+
+    $default  使用规则 56 以归约 (InitVal)
+
+
+状态 250
+
+   48 InitVal_A: ',' InitVal InitVal_A .
+
+    $default  使用规则 48 以归约 (InitVal_A)
