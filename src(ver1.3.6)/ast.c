@@ -44,7 +44,7 @@ void show_ast(ast* node, int nest)
         printf("%s '%s'\n", node->node_type, node->value_string);
     else if(strcmp(node->node_type, "FUNC_CALL_PARAM") == 0)
         printf("%s\n", node->node_type);
-    else if(strcmp(node->node_type, "CONST_INIT") == 0 && )
+    else if(strcmp(node->node_type, "CONST_INIT") == 0)
         printf("%s '%s'\n", node->node_type, node->value_string);
     else if(strcmp(node->node_type, "CONST_DEF_A") == 0)
         printf("%s '%s'\n", node->node_type, node->value_string);
