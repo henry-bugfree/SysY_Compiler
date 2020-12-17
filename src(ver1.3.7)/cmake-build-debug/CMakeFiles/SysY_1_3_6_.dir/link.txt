@@ -1,0 +1,1 @@
+/usr/bin/c++  -g   CMakeFiles/SysY_1_3_6_.dir/main.cpp.o  -o SysY_1_3_6_ 
