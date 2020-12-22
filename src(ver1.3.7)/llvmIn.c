@@ -6,13 +6,21 @@ int main()
 {
     return 0;
 }
-void func1(int a)
+int func1(int a)
 {
-    const int b=6;
+    const int b=3;
     const int c=1;
+    return b;
 }
 void func2(int a)
 {
-    int b;
-    int c=1;
+    if(1==2)
+    {
+        int d=f[1]+3-func1(1);
+    }
+    else
+    {
+        int b=1;
+    }
+
 }

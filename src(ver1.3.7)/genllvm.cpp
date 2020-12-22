@@ -4,17 +4,19 @@
  * Last Update: 12/9/2020
  */
 
-#include <stdlib.h>
-#include <stdio.h>
+#include <cstdio>
+#include <string>
 #include <string.h>
 #include "genllvm.h"
-
+#include <vector>
 llvm::llvm(void)
 {
 }
 llvm::~llvm(void)
 {
 }
+std::vector<std::string> id_global;
+std::vector<std::string> id_local;
 
 enum error_code{
     ERROR_llvm_CONST_EXPR = 255, ERROR_llvm_FUNC_DEF
@@ -69,6 +71,9 @@ int llvm::CONST_DEF_G(ast* pointer)
 {
     printf("@");
     printf("%s", pointer->value_string);
+
+    std::string temp = pointer->value_string;
+    id_global.push_back(temp);
 
     printf(" = dso_local constant ");
 
@@ -187,6 +192,9 @@ int llvm::VAR_DEF_G(ast* pointer)
 {
     printf("@");
     printf("%s", pointer->value_string);
+
+    std::string temp = pointer->value_string;
+    id_global.push_back(temp);
 
     printf(" = dso_local global ");
 

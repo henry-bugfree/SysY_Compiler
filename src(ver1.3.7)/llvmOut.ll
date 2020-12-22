@@ -9,12 +9,12 @@ int main()
 }
 void func1(int a)
 {
-    const int b=6;
+    const int b=3;
     const int c=1;
 }
 void func2(int a)
 {
-    int b;
+    int b=e;
     int c=1;
 }
 <--------------------AST-------------------->
@@ -107,7 +107,7 @@ COMP_UNIT
         CONST_DECL 'int'
           CONST_DEF 'b'
             CONST_INIT ''
-            DECIMAL 6
+            DECIMAL 3
       BLOCK_ITEM
         CONST_DECL 'int'
           CONST_DEF 'c'
@@ -122,6 +122,8 @@ COMP_UNIT
       BLOCK_ITEM
         VAR_DECL 'int'
           VAR_DEF 'b'
+            INIT_VAR ''
+              IDENTIFIER 'e'
       BLOCK_ITEM
         VAR_DECL 'int'
           VAR_DEF 'c'
@@ -144,7 +146,7 @@ define dso_local void @func1(i32 %0) #0 {
   %2 = alloca i32, align 4
   store i32 %0, i32* %2, align 4
   %3 = alloca i32, align 4
-  store i32 6, i32* %3, align 4
+  store i32 3, i32* %3, align 4
   %4 = alloca i32, align 4
   store i32 1, i32* %4, align 4
   ret void
@@ -155,6 +157,7 @@ define dso_local void @func2(i32 %0) #0 {
   %2 = alloca i32, align 4
   store i32 %0, i32* %2, align 4
   %3 = alloca i32, align 4
+  store i32 0, i32* %3, align 4
   %4 = alloca i32, align 4
   store i32 0, i32* %4, align 4
   ret void
