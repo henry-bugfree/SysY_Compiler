@@ -1,7 +1,10 @@
-int a=2;
-int b=a;
-int func(int c,int d)
+const int a = 1;
+const int b = 2;
+int func(int p)
 {
-    int q=c;
-    return a;
+	const int c = 2;
+	const int d = 3;
+	const int e = 4;
+	return 0;
 }
+	

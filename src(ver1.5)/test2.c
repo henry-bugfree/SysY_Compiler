@@ -1,5 +1,5 @@
-
-int func(int c)
+void func(int p,int q)
 {
-    return 0;
+    int w = 2;
+    int a = q;
 }

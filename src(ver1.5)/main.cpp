@@ -15,8 +15,6 @@
 ast* ast_root;
 extern int yyparse(void);
 
-std::ofstream ofile;
-
 int driver()
 {
     yyparse();

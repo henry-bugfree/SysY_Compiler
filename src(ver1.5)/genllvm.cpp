@@ -39,7 +39,7 @@ int genllvm(ast* root)
         }
         else
         {
-            ::cout<<"DO NOT DETECT COMP_UNIT\n";
+            std::cout<<"DO NOT DETECT COMP_UNIT\n";
             exit(0);
         }
         cruiser = cruiser->next;
@@ -121,7 +121,7 @@ int GVD::VAR_DEF(ast* pointer)
     else
     {
         int value = GVD::AddExp(pointer->right->right);
-        std::cout<<"@"<<pointer->value_string<<" = common dso_local global i32 "<<value<<", align 4\n";
+        std::cout<<"@"<<pointer->value_string<<" = dso_local global i32 "<<value<<", align 4\n";
         std::string temp = pointer->value_string;
         id_global.insert(std::pair<std::string, int>(temp, value));
     }
@@ -231,10 +231,10 @@ int GFD::FUNC_DEF(ast* pointer)
 
     int count = num;
     for(int i=0;i<id_local.size();i++)
-        std::cout<<"  "<<++count<<" = alloca i32, align 4\n";
+        std::cout<<"  %"<<++count<<" = alloca i32, align 4\n";
     count = num;
     for(int i=0;i<num;i++)
-        std::cout<<"  store i32 "<<i<<", i32* "<<++count<<", align 4\n";
+        std::cout<<"  store i32 %"<<i<<", i32* %"<<++count<<", align 4\n";
 
     GFD::Block(pointer->right);
 
@@ -259,7 +259,7 @@ int GFD::FuncFParam(ast* pointer, int* num)
         std::cout<<", ";
     if(pointer->left == NULL)
     {
-        std::cout<<"i32 "<<*num;
+        std::cout<<"i32 %"<<*num;
         std::string temp = pointer->value_string1;
         id_local.insert(std::pair<std::string, int>(temp, *num));
     }
@@ -500,21 +500,22 @@ int FVD::UnaryExp(ast* pointer, int id_num)
             if(iter != id_global.end())
             {
                 std::cout<<"  %"<<scout<<" = load i32, i32* @"<<temp<<", align 4"<<std::endl;
-                std::cout<<"  store i32 "<<scout++<<", i32* "<<id_num<<", align 4\n";
+                std::cout<<"  store i32 %"<<scout++<<", i32* %"<<id_num<<", align 4\n";
             }
             else
             {
                 iter = id_local.find(temp);
                 if(iter != id_local.end())
                 {
-                    std::cout<<"  "<<scout<<" = load i32, i32* "<<iter->second<<", align 4\n";
-                    std::cout<<"  store i32 "<<scout++<<", i32* "<<id_num<<", align 4\n";
+                    std::cout<<"  %"<<scout<<" = load i32, i32* %"<<iter->second<<", align 4\n";
+                    std::cout<<"  store i32 %"<<scout++<<", i32* %"<<id_num<<", align 4\n";
                 }
                 else std::cout<<"wrong initialing identifier."<<std::endl;
             }
         }
         else if(strcmp(pointer->node_type, "DECIMAL") == 0)
-            std::cout<<"  store i32 "<<pointer->value_int<<", i32* "<<id_num<<", align 4\n";
+            std::cout<<"  store i32 "<<pointer->value_int<<", i32* %"<<id_num<<", align 4\n";
+        //wrong here
     }
 }
 
@@ -599,7 +600,7 @@ int RST::UnaryExp(ast* pointer)
                 iter = id_local.find(temp);
                 if(iter != id_local.end())
                 {
-                    std::cout<<"  "<<scout<<" = load i32, i32* "<<iter->second<<", align 4\n";
+                    std::cout<<"  %"<<scout<<" = load i32, i32* %"<<iter->second<<", align 4\n";
                     std::cout<<"  ret i32 "<<scout++<<"\n";
                 }
                 else std::cout<<"wrong initialing identifier."<<std::endl;
