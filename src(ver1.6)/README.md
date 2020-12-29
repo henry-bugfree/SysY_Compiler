@@ -11,5 +11,5 @@ IF语句，WHILE语句，数组。
 namespace ES//expression scout:  
 先行遍历表达式，检查有无identifier或函数调用，若有返回非0，若无返回0;  
 namespace FS//function scout:
-先行遍历函数，将该函数中所有变量声明存入std::map<std::string,int> id_local中(string成员为变量名称,int成员为变量序号),以便后续操作;  
+先行遍历函数，将该函数中所有变量声明存入std::map\<std::string,int\> id_local中(string成员为变量名称,int成员为变量序号),以便后续操作;  
 
